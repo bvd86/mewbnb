@@ -2,24 +2,24 @@ class BookingsController < ApplicationController
   before_action :find_booking, only: [:show, :edit, :update]
   before_action :find_user
 
-  # def create
-  #   @booking = Booking.new(booking_params)
-  #   @booking.user_id = @user.id
-  #   if @booking.save!
-  #     redirect_to booking_path(@booking)
-  #   else
-  #     render :new
-  #   end
-  # end
-
   # def edit; end
 
-  # def new
-  #   @booking = Booking.new
-  # end
-
-  def show
+  def new
+    @booking = Booking.new
   end
+
+  def create
+    @booking = Booking.new(booking_params)
+    @booking.user = @user
+    @booking.pokemon = @pokemon
+    if @booking.save!
+      redirect_to booking_path(@booking)
+    else
+      render :new
+    end
+   end
+
+  def show; end
 
   # def update
   #   @booking.update(booking_params)
@@ -38,7 +38,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:name, :type, :level,
-                                   :location, :rate, :description, :picture)
+    params.require(:booking).permit(:status, :start_date, :end_date)
   end
 end
