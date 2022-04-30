@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   # Routes for pokemons
   resources :pokemons, only: [:index, :show, :new, :create, :edit, :update] do
     # Nested route on pokemons for bookings
-    resources :bookings, only: [:show, :new]
+    resources :bookings, only: [:show, :new, :create]
   end
 
-  resources :bookings, only: [:index, :create, :edit, :update]
+  resources :bookings, only: [:index, :edit, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
