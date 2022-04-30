@@ -3,10 +3,11 @@
   <div class="main_logo">
     <%= image_tag 'Pokemon_logo.png', alt: 'pokemon_logo', class:"pokemon_logo" %>
     <%= image_tag 'mew.png', alt: 'mew', class:"mew" %>
-  </div>
-  <div class="buttons">
-      <button class="signin" role="button">Sign In</button>
-      <button class="signin" role="button">Sign Up</button>
+    <form action="">
+      <input type="search" required>
+      <i class="fa fa-search"></i>
+      <a href="javascript:void(0)" id="clear-btn">Clear</a>
+    </form>
   </div>
   <div class="trainer-container">
       <%= image_tag 'male_trainer.png', alt: 'male_trainer', class:"male_trainer" %>
