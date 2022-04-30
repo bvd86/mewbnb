@@ -1,12 +1,50 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: $lavender-blush;
+
+  .navbar-collapse {
+    flex-grow: 0;
+  }
+
+  .navbar-brand img {
+    width: 40px;
+  }
+
+  a {
+    text-decoration: none;
+    color: $purple-navy;
+
+    &:hover {
+      color: $rhythm;
+    }
+  }
+
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.navbar-nav {
+  gap: 8px;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+
+.mewbnb {
+  font-family: $mewbnb-font;
+  font-size: 24px;
+  padding-top: 0;
+}
+
+.nav-text {
+  font-family: $body-font;
+  font-size: 14px;
+}
+
+.active {
+  border-radius: 16px;
+  background-color: white;
+}
+
+#signup {
+  background-color: white !important;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-shadow: 1px 1px 2px black;
 }
