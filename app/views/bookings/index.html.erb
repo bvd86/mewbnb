@@ -1,0 +1,5 @@
+<% @bookings.each do |b| %>
+<p><%= b.pokemon.name %></p>
+<p>Start: <%= b.start_date %></p>
+<p>End: <%= b.end_date %></p>
+<% end %>
