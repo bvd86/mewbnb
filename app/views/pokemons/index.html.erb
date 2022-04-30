@@ -1,5 +1,8 @@
 <div class="container">
-  <h1>Registered Pokemons</h1>
+  <div style="display: flex; justify-content: space-between">
+    <h1>Registered Pokemons</h1>
+    <%= link_to "➕ Add a pokemon", new_pokemon_path %>
+  </div>
   <h4>Here is a list of all the registered pokemons on the platform.</h4>
   <br>
   <table>
@@ -18,8 +21,10 @@
       <td><%= p.level %></td>
       <td><%= p.location %></td>
       <td><%= p.rate %></td>
-      <% if p.booking != nil %>
-        <th><%= p.booking.status %></th>
+      <% if p.booking == nil && p.user == @user %>
+        <td><%= link_to "➕ Offer pokemon", new_pokemon_booking_path(p) %></td>
+      <% elsif p.booking != nil %>
+        <td><%= p.booking.status %></td>
       <% end %>
     </tr>
     <% end %>

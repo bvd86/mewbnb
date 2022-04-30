@@ -2,7 +2,7 @@ class PokemonsController < ApplicationController
   before_action :find_pokemon, only: [:show, :edit, :update]
   before_action :find_user
 
-  # def edit; end
+  def edit; end
 
   def index
     @pokemons = Pokemon.all.order(rate: :desc)
@@ -24,11 +24,11 @@ class PokemonsController < ApplicationController
 
   def show; end
 
-  # def update
-  #   @pokemon.update(pokemon_params)
+  def update
+    @pokemon.update(pokemon_params)
 
-  #   redirect_to pokemon_path(@pokemon)
-  # end
+    redirect_to pokemon_path(@pokemon)
+  end
 
   private
 
