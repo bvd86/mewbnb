@@ -19,11 +19,11 @@
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
           <%= link_to "#", class: "navbar-brand" do %>
-            <%= image_tag "mew.png", class:"rounded-circle" %>
+            <%= image_tag "mew.png", class:"rounded-circle logo" %>
           <% end %>
         </li>
         <li class="nav-item ">
-        <%= link_to "Mewbnb", "#", class: "nav-link membnb" %>
+        <%= link_to "Mewbnb", "#", class: "nav-link mewbnb" %>
         </li>
       </ul>
     </div>
@@ -32,19 +32,20 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse nav-text" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto nav-text">
         <%# if user_signed_in? %>
-          <li class="nav-item active">
+          <li class="nav-item <%= 'active' if current_page?("#") %>">
+
             <%= link_to "Listings", "#", class: "nav-link" %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <%= 'active' if current_page?("#") %>">
             <%= link_to "Pokemons", "#", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
             <%= image_tag "pokemon-trainer.png", class: "avatar dropdown-toggle avatar-large avatar-bordered", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
 
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu dropdown-menu-end nav-text" aria-labelledby="navbarDropdown">
               <%= link_to "Messages", "#", class: "dropdown-item border-bottom" %>
               <%= link_to "Become a Gym Leader", "#", class: "dropdown-item" %>
 
@@ -52,11 +53,15 @@
               <%#= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
+
         <%# else %>
           <!--li class="nav-item"-->
             <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
-            <%#= link_to "Sign-up", #, class: "nav-link" %>
           <!--/li-->
+           <!--li class="nav-item"-->
+            <%#= link_to "Sign-up", "#", class: "nav-link btn rounded-pill", id:"signup" %>
+          <!--/li-->
+
         <%# end %>
       </ul>
     </div>
