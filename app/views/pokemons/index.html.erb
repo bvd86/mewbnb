@@ -9,14 +9,18 @@
       <th>Level</th>
       <th>Location</th>
       <th>Rate</th>
+      <th>Availability</th>
     </tr>
     <% @pokemons.each do |p| %>
     <tr>
       <td><%= link_to p.name, pokemon_path(p) %></td>
-      <td><%= p.type %></td>
+      <td><%= p.pokemon_type %></td>
       <td><%= p.level %></td>
       <td><%= p.location %></td>
       <td><%= p.rate %></td>
+      <% if p.booking != nil %>
+        <th><%= p.booking.status %></th>
+      <% end %>
     </tr>
     <% end %>
   </table>
