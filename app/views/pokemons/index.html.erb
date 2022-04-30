@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Registered Pokemons</h1>
+  <h4>Here is a list of all the registered pokemons on the platform.</h4>
+  <br>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Level</th>
+      <th>Location</th>
+      <th>Rate</th>
+    </tr>
+    <% @pokemons.each do |p| %>
+    <tr>
+      <td><%= link_to p.name, pokemon_path(p) %></td>
+      <td><%= p.type %></td>
+      <td><%= p.level %></td>
+      <td><%= p.location %></td>
+      <td><%= p.rate %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
