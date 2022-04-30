@@ -34,7 +34,7 @@ class BookingsController < ApplicationController
   end
 
   def find_pokemon
-    @pokemon = current_pokemon
+    @pokemon = Pokemon.find(params[:id])
   end
 
   def find_booking
