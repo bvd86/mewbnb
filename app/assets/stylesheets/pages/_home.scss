@@ -42,11 +42,12 @@ body, html {
 
 .pokemon_logo{
   position:relative;
+  width: 60vw;
 }
 
 .mew{
   position: absolute;
-  width: 450px;
+  width: 30vw;
   margin-left: auto;
   margin-right: auto;
   left: 0;
@@ -57,7 +58,7 @@ body, html {
 .trainer-container {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  height: 75vh;
   display: flex;
   left: 0;
   right: 0;
@@ -65,7 +66,7 @@ body, html {
   justify-content: space-between;
 }
 
-form{
+.home-search{
   position: inherit;
   top: 165%;
   left: 50%;
@@ -80,7 +81,7 @@ form{
   padding: 5px;
 }
 
-input{
+.home-input{
   position: absolute;
   top: 0;
   left: 0;
@@ -110,25 +111,24 @@ input{
   transition: all 1s;
 }
 
-form:hover,
-form:valid{
+.home-search:hover,
+.home-search:valid{
   width: 200px;
   cursor: pointer;
 }
 
-form:hover input,
-form:valid input{
+.home-search:hover .home-input,
+.home-search:valid .home-input{
   display: block;
 }
 
-form:hover .fa,
-form:valid .fa{
-
+.home-search:hover .fa,
+.home-search:valid .fa{
   background: #FBF0F6ff;;
   color: #C296B3ff;
 }
 
-a {
+.searchbar {
 display: none;
 position: absolute;
 top: 70px;
@@ -141,6 +141,6 @@ text-align: center;
 width: 100%;
 }
 
-form:valid a {
+.home-search:valid .searchbar {
 display: block;
 }

@@ -1,8 +1,11 @@
 <div class="container">
-  <h1>Registered Pokemons</h1>
+  <div style="display: flex; justify-content: space-between">
+    <h1>Registered Pokemons</h1>
+    <%= link_to "➕ Add a pokemon", new_pokemon_path %>
+  </div>
   <h4>Here is a list of all the registered pokemons on the platform.</h4>
   <br>
-  <table>
+  <table style="table-layout: fixed; width: 70vw;">
     <tr>
       <th>Name</th>
       <th>Type</th>
@@ -12,16 +15,21 @@
       <th>Availability</th>
     </tr>
     <% @pokemons.each do |p| %>
-    <tr>
-      <td><%= link_to p.name, pokemon_path(p) %></td>
-      <td><%= p.pokemon_type %></td>
-      <td><%= p.level %></td>
-      <td><%= p.location %></td>
-      <td><%= p.rate %></td>
-      <% if p.booking != nil %>
-        <th><%= p.booking.status %></th>
+      <% if p.booking.nil? && p.user != @user %>
+      <% else %>
+      <tr>
+        <td><%= link_to p.name, pokemon_path(p) %></td>
+        <td><%= p.pokemon_type %></td>
+        <td><%= p.level %></td>
+        <td><%= p.location %></td>
+        <td><%= p.rate %></td>
+        <% if p.booking == nil && p.user == @user %>
+          <td><%= link_to "Create an offer", new_pokemon_booking_path(p) %></td>
+        <% elsif p.booking != nil %>
+          <td><%= p.booking.status %></td>
+        <% end %>
+      </tr>
       <% end %>
-    </tr>
     <% end %>
   </table>
 </div>
