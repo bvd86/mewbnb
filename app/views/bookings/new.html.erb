@@ -1,0 +1,7 @@
+<h2>Create a booking:</h2>
+<%= simple_form_for @booking do |f| %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.association :pokemon %>
+  <%= f.submit "Create list", class: "btn btn-primary" %>
+<% end %>
