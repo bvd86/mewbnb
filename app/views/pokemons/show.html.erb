@@ -4,4 +4,5 @@
   <p>Type: <%= @pokemon.pokemon_type %> / Location: <%= @pokemon.location %></p>
   <p><%= @pokemon.description %></p>
   <img src=<%= @pokemon.picture %> alt="Picture">
+  <p><%= link_to "Book this Pokémon", new_pokemon_booking_path(@pokemon) %></p>
 </div>

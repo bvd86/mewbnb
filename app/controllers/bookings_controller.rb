@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :find_booking, only: [:show, :edit, :update]
-  before_action :find_user, :find_pokemon
+  before_action :find_user
 
   # def edit; end
 
@@ -31,10 +31,6 @@ class BookingsController < ApplicationController
 
   def find_user
     @user = current_user
-  end
-
-  def find_pokemon
-    @pokemon = Pokemon.find(params[:id])
   end
 
   def find_booking
