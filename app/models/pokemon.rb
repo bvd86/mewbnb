@@ -4,7 +4,7 @@ class Pokemon < ApplicationRecord
   has_one_attached :picture
 
   validates :name, presence: true
-  validates :type, presence: true
+  validates :pokemon_type, presence: true
   validates :level, presence: true
   validates :location, presence: true
   validates :rate, presence: true
