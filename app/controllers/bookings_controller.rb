@@ -2,7 +2,9 @@ class BookingsController < ApplicationController
   before_action :find_booking, only: [:show, :edit, :update]
   before_action :find_user
 
-  # def edit; end
+  def index
+    @bookings = Booking.all
+  end
 
   def new
     @booking = Booking.new
@@ -12,6 +14,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.user = @user
     @booking.pokemon = @pokemon
+    @booking.status = "requested"
     if @booking.save!
       redirect_to booking_path(@booking)
     else
@@ -21,11 +24,13 @@ class BookingsController < ApplicationController
 
   def show; end
 
-  # def update
-  #   @booking.update(booking_params)
+  def edit; end
 
-  #   redirect_to booking_path(@booking)
-  # end
+  def update
+    @booking.update(booking_params)
+
+    redirect_to booking_path(@booking)
+  end
 
   private
 

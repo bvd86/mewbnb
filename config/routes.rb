@@ -6,10 +6,11 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
 
   # Routes for pokemons
-  resources :pokemons, only: [:index, :show, :new, :create] do
+  resources :pokemons, only: [:index, :show, :new, :create, :edit, :update] do
     # Nested route on pokemons for bookings
-    resources :bookings, only: [:show, :new, :create]
+    resources :bookings, only: [:show, :new]
   end
 
+  resources :bookings, only: [:index, :create, :edit, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
