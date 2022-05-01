@@ -1,6 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: $lavender-blush;
+  box-shadow: 0 0px 7px rgba(0,0,0,0.2);
 
   .navbar-collapse {
     flex-grow: 0;
@@ -23,6 +24,7 @@
     font-family: $mewbnb-font;
     font-size: 24px;
     padding-top: 0;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
   }
 }
 
