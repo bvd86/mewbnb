@@ -7,8 +7,14 @@
     flex-grow: 0;
   }
 
-  .navbar-brand img {
+  .navbar-brand {
+
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+
+    img {
     width: 40px;
+    }
   }
 
   a {
