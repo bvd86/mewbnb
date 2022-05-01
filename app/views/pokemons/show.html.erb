@@ -1,14 +1,24 @@
 <div class="container">
 
-  <div>
-  <h1><%= @pokemon.name %></h1>
-  <p><%= @pokemon.location %></p>
-  <%= image_tag 'pikachu-silhouette', atl: "Your pokemon picture" %>
+  <div class="border">
+    <h1><%= @pokemon.name %></h1>
+    <p><%= @pokemon.location %></p>
+  </div>
+  <div class="pokemon-details d-flex">
+    <div class="pokemon-details-left">
+      <div class="pokemon-img">
+        <%= image_tag 'pikachu-silhouette', atl: "Your pokemon picture" %>
+        <!--img src=<%= @pokemon.picture %> alt="Picture"-->
+      </div>
 
-  <h3>Rate: <%= @pokemon.rate %> / Level: <%= @pokemon.level %></h3>
-  <p>Type: <%= @pokemon.pokemon_type %></p>
-  <p><%= @pokemon.description %></p>
+      <h3>Rate: <%= @pokemon.rate %> / Level: <%= @pokemon.level %></h3>
+    </div>
+    <div class="pokemon-details-right">
+      <p>Type: <%= @pokemon.pokemon_type %></p>
+      <p><%= @pokemon.description %></p>
+    </div>
 
-  <!--img src=<%= @pokemon.picture %> alt="Picture"-->
-  <p><%= link_to "Book this Pokémon", new_pokemon_booking_path(@pokemon) %></p>
+
+    <p><%= link_to "Book this Pokémon", new_pokemon_booking_path(@pokemon) %></p>
+  </div>
 </div>
