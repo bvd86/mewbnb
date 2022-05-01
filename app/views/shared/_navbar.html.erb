@@ -5,7 +5,7 @@
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
           <%= link_to root_path, class: "navbar-brand" do %>
-            <%= image_tag "mewlogo.png", class:"rounded-circle logo" %>
+            <%= image_tag "mewlogo.png", atl:"mewbnb logo", class:"rounded-circle logo" %>
           <% end %>
         </li>
         <li class="nav-item ">
@@ -19,6 +19,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
       <ul class="navbar-nav me-auto nav-text">
         <% if user_signed_in? %>
           <li class="nav-item <%= 'active' if current_page?("#") %>">
