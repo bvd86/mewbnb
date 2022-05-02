@@ -1,0 +1,122 @@
+// .container *{
+//   outline: 1px solid red;
+// }
+
+.pokemon-img {
+  border-top-left-radius: 32px;
+
+  img {
+    height: 400px;
+  }
+}
+
+#pokemon-location {
+  img {
+    height: 16px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  p {
+    margin-bottom: 0px;
+    color: $midnight-blue;
+    opacity: 0.5;
+    font-size: 14px;
+  }
+}
+
+#pokemon-name {
+  margin-bottom: 0px;
+}
+
+.container-pokemon-box {
+  margin-left: 150px;
+  margin-right: 150px;
+
+  h1{
+    font-size: 3.6rem;
+    color: $st-patricks-blue;
+  }
+}
+
+
+.pokemon-details {
+  margin: 10px;
+  border: 1px solid lightgray;
+  border-radius: 32px;
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
+}
+
+.pokemon-details-right {
+  margin-left: 20px;
+  margin-right: 20px;
+
+  h4 {
+    color: $st-patricks-blue;
+  }
+}
+
+.pokemon-header {
+  margin-left: 15px;
+  margin-bottom: 24px;
+
+  p {
+    margin-bottom: 7px;
+    margin-left: 10px;
+    color: $french-blue;
+  }
+}
+
+.pokemon-rate-box {
+  .pokemon-rate {
+    font-size: 2rem;
+    margin-right: 3px;
+
+  }
+  p {
+    margin-bottom: 0px;
+    color: #554c7d;
+  }
+}
+
+.pokemon-gym-leader {
+  padding-bottom: 8px;
+
+  p {
+    margin-bottom: 0px;
+    margin-right: 16px;
+  }
+}
+
+.container-explore-box {
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-bottom: 100px;
+
+  h2 {
+    margin-left: 15px;
+    margin-bottom: 24px;
+    font-size: 3rem;
+  }
+
+  .card {
+    border-radius: 40px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .card-body {
+    color: $rhythm
+  }
+}
+
+.booking-btn {
+  margin-top: 56px;
+}
