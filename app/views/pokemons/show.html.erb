@@ -1,24 +1,50 @@
 <div class="container">
+  <div class="container-pokemon-box">
 
-  <div class="border">
-    <h1><%= @pokemon.name %></h1>
-    <p><%= @pokemon.location %></p>
-  </div>
-  <div class="pokemon-details d-flex">
-    <div class="pokemon-details-left">
-      <div class="pokemon-img">
-        <%= image_tag 'pikachu-silhouette', atl: "Your pokemon picture" %>
-        <!--img src=<%= @pokemon.picture %> alt="Picture"-->
+      <div class="pokemon-header">
+        <div class="d-flex align-items-end">
+          <h1 id="pokemon-name"><%= @pokemon.name %></h1>
+          <p>Level <%= @pokemon.level %></p>
+        </div>
+
+        <div id="pokemon-location" class="d-flex">
+          <%= image_tag "location" %>
+          <p><%= @pokemon.location %></p>
+        </div>
       </div>
 
-      <h3>Rate: <%= @pokemon.rate %> / Level: <%= @pokemon.level %></h3>
-    </div>
-    <div class="pokemon-details-right">
-      <p>Type: <%= @pokemon.pokemon_type %></p>
-      <p><%= @pokemon.description %></p>
-    </div>
+      <div class="pokemon-details d-flex">
+        <!-- POKEMON PICTURE AND RATE -->
+        <div class="pokemon-details-left">
+          <div class="pokemon-img">
+            <%= image_tag 'pikachu-silhouette', atl: "Your pokemon picture" %>
+            <!--img src=<%= @pokemon.picture %> alt="Picture"-->
+          </div>
+
+          <div class="pokemon-rate-box d-flex justify-content-end align-items-center">
+            <p class="pokemon-rate">$<%= @pokemon.rate %></p>
+            <p>/night</p>
+          </div>
 
 
-    <p><%= link_to "Book this Pokémon", new_pokemon_booking_path(@pokemon) %></p>
+        </div>
+
+        <div class="pokemon-details-right">
+        <!-- GYM LEADER INFO-->
+          <div class="pokemon-gym-leader">
+            <%= @gym_leader %>
+          </div>
+
+        <!-- POKEMON DESCRIPTION -->
+          <p>Type: <%= @pokemon.pokemon_type %></p>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, cum beatae quia voluptatum suscipit quis vitae doloribus? Omnis magnam dignissimos quasi incidunt suscipit animi a aut quas beatae? Possimus, eius?</p>
+          <!--p><%= @pokemon.description %></p-->
+          <p><%= link_to "Book this Pokémon", new_pokemon_booking_path(@pokemon) %></p>
+        </div>
+
+
+      </div>
+
+
   </div>
 </div>

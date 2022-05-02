@@ -22,7 +22,9 @@ class PokemonsController < ApplicationController
      end
    end
 
-  def show; end
+  def show;
+    @gym_leader = @pokemon.user
+  end
 
   # def update
   #   @pokemon.update(pokemon_params)
