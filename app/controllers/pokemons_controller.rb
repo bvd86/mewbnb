@@ -24,6 +24,7 @@ class PokemonsController < ApplicationController
 
   def show;
     @gym_leader = @pokemon.user
+    @pokemons = Pokemon.all
   end
 
   # def update

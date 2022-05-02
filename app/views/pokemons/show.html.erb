@@ -46,7 +46,7 @@
           </div>
           <p><b>Type</b>: <%= @pokemon.pokemon_type %></p>
 
-          <div>
+          <div class="mt-2">
             <%= link_to "Book this Pokémon", new_pokemon_booking_path(@pokemon), class:"btn btn-primary" %>
           </div>
         </div>
@@ -58,7 +58,27 @@
   </div>
 
   <div class="container-explore-box">
-    <h2>Check out other pokemons</h2>
+    <h2>Explore more pokemons</h2>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+      <% @pokemons.sample(3).each do |p| %>
+        <%= link_to pokemon_path(p) do %>
+          <div class="col">
+            <div class="card" style="width: 240px;">
+              <%= image_tag "pikachu-silhouette", class:"card-img-top", alt:"..."%>
+              <div class="card-body d-flex justify-content-between border-top">
+                <h5 class="card-title"><%= p.name  %></h5>
+                <p class="card-text"> $<%= p.rate %>/day</p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+
 
 
   </div>
