@@ -32,7 +32,6 @@
 .container-pokemon-box {
   margin-left: 150px;
   margin-right: 150px;
-  margin-bottom: 100px;
 
   h1{
     font-size: 3.6rem;
@@ -42,8 +41,6 @@
 
 .pokemon-details {
   margin: 10px;
-  align-items: center;
-  justify-content: center;
   border: 1px solid lightgray;
   border-radius: 32px;
   box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
@@ -75,4 +72,19 @@
     margin-bottom: 0px;
     color: #554c7d;
   }
+}
+
+.pokemon-gym-leader {
+  padding-bottom: 8px;
+
+  p {
+    margin-bottom: 0px;
+    margin-right: 16px;
+  }
+}
+
+.container-explore-box {
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-bottom: 100px;
 }
