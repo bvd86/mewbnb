@@ -1,5 +1,6 @@
 .card-container{
   position: relative;
+  display:flex
 }
 
 .card-container .card{
@@ -9,6 +10,7 @@
   background: #232323;
   border-radius: 20px;
   overflow: hidden;
+  margin: 20px auto;
 }
 
 .card-container .card:before{
@@ -36,6 +38,10 @@
   font-weight: 800;
   font-style: italic;
   color: rgba(171, 25, 255, 0.81)
+}
+
+.type-info {
+  margin-bottom: 0;
 }
 
 .level h3 {
@@ -82,7 +88,7 @@
 
 .card-container .card .contentBox h2{
   position: relative;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 1px;
   color: #fff;
   margin: 0;
@@ -121,11 +127,11 @@
 }
 
 .card-container .card .contentBox .type span{
-  width: 26px;
+  width: 60px;
   height: 26px;
   text-align: center;
   line-height: 26px;
-  font-size: 14px;
+  font-size: 12px;
   display: inline-block;
   color: #111;
   background: #fff;

@@ -6,22 +6,32 @@
   <h4>Here is a list of all the registered pokemons on the platform.</h4>
   <br>
   <table style="table-layout: fixed; width: 70vw;">
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Level</th>
-      <th>Location</th>
-      <th>Rate</th>
-      <th>Availability</th>
-    </tr>
     <% @pokemons.each do |p| %>
       <% if p.booking.nil? && p.user != @user %>
       <% else %>
       <tr>
-        <td><%= link_to p.name, pokemon_path(p) %></td>
-        <td><%= p.pokemon_type %></td>
-        <td><%= p.level %></td>
-        <td><%= p.location %></td>
+        <div class="card-container">
+          <div class="card">
+            <div class="imgBox">
+              <%= image_tag 'Ivysaur.jpg', alt: 'ivysaur', class:"ivysaur" %>
+            </div>
+            <div class="contentBox">
+              <h2><%= link_to p.name, pokemon_path(p) %></h2>
+              <div class="type">
+               <h3 class="type-info">Type :</h3>
+                <span><%= p.pokemon_type %></span>
+              </div>
+              <div class="level">
+               <h3>Level : <%= p.level %></h3>
+              </div>
+              <div class="location">
+               <h3>Location : <%= p.location %></h3>
+              </div>
+              <a href="#">Book Now</a>
+           </div>
+         </div>
+      </div>
+
         <td><%= p.rate %></td>
         <% if p.booking == nil && p.user == @user %>
           <td><%= link_to "Create an offer", new_pokemon_booking_path(p) %></td>
@@ -32,24 +42,4 @@
       <% end %>
     <% end %>
   </table>
-</div>
-
-<div class="card-container">
-  <div class="card">
-    <div class="imgBox">
-      <%= image_tag 'Ivysaur.jpg', alt: 'ivysaur', class:"ivysaur" %>
-    </div>
-    <div class="contentBox">
-      <h2>Pokemon Name</h2>
-      <div class="type">
-        <h3>Type :</h3>
-        <span>Grass</span>
-      </div>
-      <div class="level">
-        <h3>Level :</h3>
-        <span></span>
-      </div>
-      <a href="#">Book Now</a>
-    </div>
-  </div>
 </div>
