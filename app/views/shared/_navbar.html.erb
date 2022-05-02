@@ -4,12 +4,12 @@
     <div>
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <%= link_to "#", class: "navbar-brand" do %>
-            <%= image_tag "mewlogo.png", class:"rounded-circle logo" %>
+          <%= link_to root_path, class: "navbar-brand" do %>
+            <%= image_tag "mewlogo.png", atl:"mewbnb logo", class:"rounded-circle logo" %>
           <% end %>
         </li>
         <li class="nav-item ">
-        <%= link_to "Mewbnb", "#", class: "nav-link mewbnb" %>
+        <%= link_to "Mewbnb", root_path, class: "nav-link mewbnb" %>
         </li>
       </ul>
     </div>
@@ -19,8 +19,9 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
       <ul class="navbar-nav me-auto nav-text">
-        <%# if user_signed_in? %>
+        <% if user_signed_in? %>
           <li class="nav-item <%= 'active' if current_page?("#") %>">
 
             <%= link_to "Find a pokemon", pokemons_path, class: "nav-link" %>
@@ -33,19 +34,19 @@
               <%= link_to "Become a Gym Leader", "#", class: "dropdown-item" %>
 
               <%= link_to "Account", "#", class: "dropdown-item border-bottom" %>
-              <%#= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
 
-        <%# else %>
-          <!--li class="nav-item"-->
-            <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
-          <!--/li-->
-           <!--li class="nav-item"-->
-            <%#= link_to "Sign-up", "#", class: "nav-link btn rounded-pill", id:"signup" %>
-          <!--/li-->
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+           <li class="nav-item">
+            <%= link_to "Sign-up", "#", class: "nav-link btn rounded-pill", id:"signup" %>
+          </li>
 
-        <%# end %>
+        <% end %>
       </ul>
     </div>
   </div>

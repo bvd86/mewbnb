@@ -1,13 +1,22 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: $lavender-blush;
+  box-shadow: 0 0px 7px rgba(0,0,0,0.2);
 
   .navbar-collapse {
     flex-grow: 0;
   }
 
-  .navbar-brand img {
+  .navbar-brand {
+
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+
+    img {
     width: 40px;
+    padding-left: 3px;
+    padding-top: 3px;
+    }
   }
 
   a {
@@ -23,15 +32,13 @@
     font-family: $mewbnb-font;
     font-size: 24px;
     padding-top: 0;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
   }
 }
 
 .navbar-nav {
   gap: 8px;
 }
-
-
-
 
 .nav-text {
   font-family: $body-font;
