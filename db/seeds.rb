@@ -34,3 +34,6 @@ end
     end_date: Faker::Date.between(from: Date.today, to: 30.days.from_now)
   })
 end
+
+# pokemon = PokeApi.get(pokemon: 'bulbasaur')
+# pokemon_photo = pokemon.sprites.front_shiny
