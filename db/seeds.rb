@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
+require 'poke-api-v2'
+require 'json'
+require 'rest-client'
+
 
 if User.count == 0
   puts "will create trainer..."
@@ -15,10 +19,12 @@ if User.count == 0
   })
 end
 
-10.times do
+20.times do
   puts "will create pokemon..."
+  poke = RestClient.get "https://pokeapi.co/api/v2/berry/#{rand(1..151)}"
+  parsed_poke = JSON.parse(poke)
   pokemon = Pokemon.create!({
-    name: Faker::Games::Pokemon.name,
+    name: poke.name,
     rate: rand(50..500),
     description: Faker::Games::Pokemon.move,
     location: Faker::Games::Pokemon.location,
