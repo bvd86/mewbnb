@@ -1,5 +1,18 @@
-<% @bookings.each do |b| %>
-<p><%= b.pokemon.name %></p>
-<p>Start: <%= b.start_date %></p>
-<p>End: <%= b.end_date %></p>
-<% end %>
+<h1>My bookings</h1>
+
+<table style="table-layout: fixed; width: 70vw;">
+  <tr>
+    <th>Name</th>
+    <th>Start</th>
+    <th>End</th>
+  </tr>
+  <% @bookings.each do |b| %>
+    <% if b.user == @user %>
+      <tr>
+        <td><%= link_to b.pokemon.name, pokemon_path(b.pokemon) %></td>
+        <td><%= b.start_date %></td>
+        <td><%= b.end_date %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
