@@ -34,6 +34,9 @@ gem 'devise'
 # Faker for seeding
 gem 'faker'
 
+# PokeAPI for seeding
+gem 'poke-api-v2'
+
 # Front-end gems
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
