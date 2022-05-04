@@ -54,7 +54,7 @@ end
   puts "creating booking..."
   Booking.create!({
     pokemon: pokemon,
-    status: ["Available", "Requested", "Booked"].sample,
+    status: ["Available", "Booked", "Canceled"].sample,
     start_date: Faker::Date.between(from: 10.days.ago, to: Date.today),
     end_date: Faker::Date.between(from: Date.today, to: 30.days.from_now)
   })

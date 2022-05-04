@@ -66,36 +66,6 @@ body, html {
   justify-content: space-between;
 }
 
-.home-search{
-  position: inherit;
-  top: 165%;
-  left: 50%;
-  transition: all 1s;
-  transform: translate(-50%,-70%);
-  width: 50px;
-  height: 50px;
-  background: #FBF0F6ff;
-  box-sizing: border-box;
-  border-radius: 25px;
-  border: 4px solid #C296B3ff;
-  padding: 5px;
-}
-
-.home-input{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;;
-  height: 42.5px;
-  line-height: 30px;
-  outline: 0;
-  border: 0;
-  display: none;
-  font-size: 1em;
-  border-radius: 20px;
-  padding: 0 20px;
-}
-
 .fa{
   box-sizing: border-box;
   padding: 10px;
@@ -111,36 +81,8 @@ body, html {
   transition: all 1s;
 }
 
-.home-search:hover,
-.home-search:valid{
-  width: 200px;
-  cursor: pointer;
-}
-
-.home-search:hover .home-input,
-.home-search:valid .home-input{
-  display: block;
-}
-
-.home-search:hover .fa,
-.home-search:valid .fa{
-  background: #FBF0F6ff;;
-  color: #C296B3ff;
-}
-
-.searchbar {
-display: none;
-position: absolute;
-top: 70px;
-bottom:0;
-left: 0;
-right: 0;
-font-size: 20px;
-color: #FBF0F6ff;
-text-align: center;
-width: 100%;
-}
-
-.home-search:valid .searchbar {
-display: block;
+#start-now {
+  position: absolute;
+  left: 22vw;
+  top:150%
 }
