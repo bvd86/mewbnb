@@ -30,8 +30,7 @@
             <%= image_tag "pokemon-trainer.png", class: "avatar dropdown-toggle avatar-large avatar-bordered", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
 
             <div class="dropdown-menu dropdown-menu-end nav-text" aria-labelledby="navbarDropdown">
-              <%= link_to "Messages", "#", class: "dropdown-item border-bottom" %>
-              <%= link_to "Become a Gym Leader", "#", class: "dropdown-item" %>
+              <%= link_to "My bookings", bookings_path, class: "dropdown-item" %>
 
               <%= link_to "Account", "#", class: "dropdown-item border-bottom" %>
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
