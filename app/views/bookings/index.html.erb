@@ -1,21 +1,25 @@
 <h1>My bookings</h1>
 
-<table style="table-layout: fixed; width: 70vw;">
-  <tr>
-    <th>Name</th>
-    <th>Start</th>
-    <th>End</th>
-    <th>Action</th>
-  </tr>
+
+
+
+<div class="row row-cols-md-2 row-cols-lg-4 g-4">
+
   <% @bookings.each do |b| %>
     <% if b.user == @user && b.status != "Canceled" %>
-      <tr>
-        <td><%= link_to b.pokemon.name, pokemon_path(b.pokemon) %></td>
-        <td><%= b.start_date %></td>
-        <td><%= b.end_date %></td>
-        <td><%= link_to "Cancel this booking", cancel_booking_path(b), method: :patch,
-                data: {confirm: 'You are about to cancel you booking for this pokemon, are you sure?'} %></td>
-      </tr>
+      <div class="col">
+        <div class="card">
+          <%= image_tag "pikachu-silhouette.png", class:"card-img-top", alt:"Photo of #{b.pokemon.name}"%>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to b.pokemon.name, pokemon_path(b.pokemon) %></h5>
+            <p class="card-text">Avaible for pickup on: <%= b.start_date  %></p>
+            <p class="card-text">Must return by: <%= b.end_date  %></p>
+            <%= link_to "Cancel this booking", cancel_booking_path(b), method: :patch,
+                    data: {confirm: 'You are about to cancel you booking for this pokemon, are you sure?'} %>
+          </div>
+        </div>
+      </div>
     <% end %>
   <% end %>
-</table>
+
+</div>
