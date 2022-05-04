@@ -15,19 +15,14 @@
       <th>Availability</th>
     </tr>
     <% @pokemons.each do |p| %>
-      <% if p.booking.nil? && p.user != @user %>
-      <% else %>
-      <tr>
-        <td><%= link_to p.name, pokemon_path(p) %></td>
-        <td><%= p.pokemon_type %></td>
-        <td><%= p.level %></td>
-        <td><%= p.location %></td>
-        <td><%= p.rate %></td>
-        <% if p.booking == nil && p.user == @user %>
-          <td><%= link_to "Create an offer", new_pokemon_booking_path(p) %></td>
-        <% elsif p.booking != nil %>
-          <td><%= p.booking.status %></td>
-        <% end %>
+      <% if p.booking != nil && p.booking.status.capitalize == "Available" %>
+        <tr>
+          <td><%= link_to p.name, pokemon_path(p) %></td>
+          <td><%= p.pokemon_type %></td>
+          <td><%= p.level %></td>
+          <td><%= p.location %></td>
+          <td><%= p.rate %></td>
+          <td><%= link_to "Book this pokemon", new_pokemon_booking_path(p) %></td>
       </tr>
       <% end %>
     <% end %>
