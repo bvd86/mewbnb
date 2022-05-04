@@ -32,7 +32,7 @@
         <% if user_signed_in? %>
           <li class="nav-item <%= 'active' if current_page?("#") %>">
 
-            <%= link_to "Find a pokemon", pokemons_path, class: "nav-link" %>
+            <%= link_to "Browse Pokemon", pokemons_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
             <%= image_tag "pokemon-trainer.png", class: "avatar dropdown-toggle avatar-large avatar-bordered", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>

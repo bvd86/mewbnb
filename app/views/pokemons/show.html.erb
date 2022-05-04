@@ -1,88 +1,81 @@
-<div class="container">
-  <div class="btn-back">
-    <%= link_to "back", pokemons_path %>
-  </div>
-  <div class="container-pokemon-box">
+<div class="btn-back">
+  <%= link_to "back", pokemons_path %>
+</div>
+<div class="container-pokemon-box">
 
-      <div class="pokemon-header">
-        <div class="d-flex align-items-end">
-          <h1 id="pokemon-name"><%= @pokemon.name %></h1>
-          <p>Level <%= @pokemon.level %></p>
-        </div>
-
-        <div id="pokemon-location" class="d-flex">
-          <%= image_tag "location" %>
-          <p><%= @pokemon.location %></p>
-        </div>
+    <div class="pokemon-header">
+      <div class="d-flex align-items-end">
+        <h1 id="pokemon-name"><%= @pokemon.name %></h1>
+        <p>Level <%= @pokemon.level %></p>
       </div>
 
-      <div class="pokemon-details d-flex">
-        <!-- POKEMON PICTURE AND RATE -->
-        <div class="pokemon-details-left">
-          <div class="pokemon-img">
-            <%= image_tag 'pikachu-silhouette.png', atl: "Your pokemon picture" %>
-            <!--img src=<%= @pokemon.picture %> alt="Picture"-->
-          </div>
-
-          <div class="pokemon-rate-box d-flex justify-content-end align-items-center">
-            <p class="pokemon-rate">$<%= @pokemon.rate %></p>
-            <p>/day</p>
-          </div>
-
-
-        </div>
-
-        <div class="pokemon-details-right">
-          <!-- GYM LEADER INFO-->
-          <div class="pokemon-gym-leader d-flex justify-content-end align-items-center mt-2 border-bottom">
-            <p><%= @gym_leader %></p>
-            <div>
-              <%= image_tag "pokemon-trainer.png", alt:"#{@gym_leader}'s picture", class:"avatar avatar-large" %>
-            </div>
-          </div>
-
-          <!-- POKEMON DESCRIPTION -->
-          <div class="mt-3">
-            <h4>Description</h4>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, cum beatae quia voluptatum suscipit quis vitae doloribus? Omnis magnam dignissimos quasi incidunt suscipit animi a aut quas beatae? Possimus, eius?</p>
-            <!--p><%= @pokemon.description %></p-->
-          </div>
-          <p><b>Type</b>: <%= @pokemon.pokemon_type %></p>
-
-          <div class="booking-btn">
-            <%= link_to "Book this Pokémon", new_pokemon_booking_path(@pokemon), class:"btn btn-grad" %>
-          </div>
-        </div>
-
-
+      <div id="pokemon-location" class="d-flex">
+        <%= image_tag "location" %>
+        <p><%= @pokemon.location %></p>
       </div>
-
-      <!--li><%#= link_to "Edit this Pokemon", edit_pokemon_path %></li-->
-  </div>
-
-  <div class="container-explore-box">
-    <h2>Explore more pokemons</h2>
-
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-
-      <% @pokemons.sample(3).each do |p| %>
-        <%= link_to pokemon_path(p) do %>
-          <div class="col">
-            <div class="card" style="width: 240px;">
-              <%= image_tag "pikachu-silhouette.png", class:"card-img-top", alt:"..."%>
-              <div class="card-body d-flex justify-content-between border-top">
-                <h5 class="card-title"><%= p.name  %></h5>
-                <p class="card-text"> $<%= p.rate %>/day</p>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
     </div>
-  </div>
+
+    <div class="pokemon-details d-flex">
+      <!-- POKEMON PICTURE AND RATE -->
+      <div class="pokemon-details-left">
+        <div class="pokemon-img">
+          <%= image_tag 'pikachu-silhouette.png', atl: "Your pokemon picture" %>
+          <!--img src=<%= @pokemon.picture %> alt="Picture"-->
+        </div>
+
+        <div class="pokemon-rate-box d-flex justify-content-end align-items-center">
+          <p class="pokemon-rate">$<%= @pokemon.rate %></p>
+          <p>/day</p>
+        </div>
 
 
+      </div>
+
+      <div class="pokemon-details-right">
+        <!-- GYM LEADER INFO-->
+        <div class="pokemon-gym-leader d-flex justify-content-end align-items-center mt-2 border-bottom">
+          <p><%= @gym_leader.email.split("@").first %></p>
+          <div>
+            <%= image_tag "pokemon-trainer.png", alt:"#{@gym_leader}'s picture", class:"avatar avatar-large" %>
+          </div>
+        </div>
+
+        <!-- POKEMON DESCRIPTION -->
+        <div class="mt-3">
+          <h4>Description</h4>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, cum beatae quia voluptatum suscipit quis vitae doloribus? Omnis magnam dignissimos quasi incidunt suscipit animi a aut quas beatae? Possimus, eius?</p>
+          <!--p><%= @pokemon.description %></p-->
+        </div>
+        <p><b>Type</b>: <%= @pokemon.pokemon_type %></p>
+
+        <div class="booking-btn">
+          <%= link_to "Book this Pokémon", new_pokemon_booking_path(@pokemon), class:"btn btn-grad" %>
+        </div>
+      </div>
 
 
+    </div>
+
+    <!--li><%#= link_to "Edit this Pokemon", edit_pokemon_path %></li-->
+</div>
+
+<div class="container-explore-box">
+  <h2>Explore more pokemons</h2>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+
+    <% @pokemons.sample(3).each do |p| %>
+      <%= link_to pokemon_path(p) do %>
+        <div class="col">
+          <div class="card" style="width: 240px;">
+            <%= image_tag "pikachu-silhouette.png", class:"card-img-top", alt:"..."%>
+            <div class="card-body d-flex justify-content-between border-top">
+              <h5 class="card-title"><%= p.name  %></h5>
+              <p class="card-text"> $<%= p.rate %>/day</p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
