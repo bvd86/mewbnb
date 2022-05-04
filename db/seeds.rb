@@ -7,8 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 require 'poke-api-v2'
-require 'json'
-require 'rest-client'
 
 
 if User.count == 0
@@ -21,10 +19,10 @@ end
 
 20.times do
   puts "will create pokemon..."
-  poke = RestClient.get "https://pokeapi.co/api/v2/berry/#{rand(1..151)}"
-  parsed_poke = JSON.parse(poke)
+  poke = PokeApi.get(:pokemon)
+  id = rand(1..151)
   pokemon = Pokemon.create!({
-    name: poke.name,
+    name: poke.results[id].name,
     rate: rand(50..500),
     description: Faker::Games::Pokemon.move,
     location: Faker::Games::Pokemon.location,
