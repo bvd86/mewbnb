@@ -1,5 +1,18 @@
+// $colors: #68F70C, #F9B80E, #36AFF6, #EAEADE, #5FB9B2, #A72BD7, #FFFA24, #DFD058
+// #D45F64, #ED1364, #958450, #1A94A3, #8F54A4, #8A56FE, #5E4533, #596260, #FD9FC2;
+// $repeat: 20;
+
+// @for $i from 1 through $repeat {
+//   .card-container .card:before:nth-child(#{length($colors)}n+#{$i}) {
+//       background: (nth($colors, random(length($colors))));
+//   }
+// }
+
+
 .card-container{
-  position: relative;
+ display: flex;
+ flex-wrap: wrap;
+ margin-bottom: 20px;
 }
 
 .card-container .card{
@@ -9,6 +22,8 @@
   background: #232323;
   border-radius: 20px;
   overflow: hidden;
+  z-index: 0;
+  margin: 15px auto;
 }
 
 .card-container .card:before{
@@ -18,7 +33,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: #527f6e;
+  background: rgb(random(255), random(255), random(255));
   clip-path: circle(150px at 80% 20%);
   transition: 0.5s ease-in-out;
 }
@@ -28,20 +43,23 @@
 }
 
 .card-container .card:after{
-  content: 'Ivysaur';
+  content: attr(data-text);
   position: absolute;
   top: 30%;
   left: -20%;
   font-size: 12em;
   font-weight: 800;
   font-style: italic;
-  color: rgba(171, 25, 255, 0.81)
+  color: rgb(random(255), random(255), random(255));
 }
 
-.level h3 {
+.level h5 {
   color: #fff;
 }
 
+.type h3 {
+  color: #fff;
+}
 .card-container .card .imgBox{
   position: absolute;
   top: 50%;
@@ -111,7 +129,7 @@
   transition-delay: 0.6s;
 }
 
-.card-container .card .contentBox .type h3, .card-container .card .contentBox .color h3{
+.card-container .card .contentBox .type h5, .card-container .card .contentBox .color h5{
   color: #fff;
   font-weight: 300;
   font-size: 14px;
@@ -121,7 +139,7 @@
 }
 
 .card-container .card .contentBox .type span{
-  width: 26px;
+  width: 60px;
   height: 26px;
   text-align: center;
   line-height: 26px;
@@ -155,5 +173,4 @@
   opacity: 1;
   transform: translateY(0px);
   transition-delay: 0.75s;
-
 }
