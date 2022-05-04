@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
 
   # Routes for pokemons
-  resources :pokemons, only: [:index, :show, :new, :create, :edit, :update] do
+  resources :pokemons do
     # Nested route on pokemons for bookings
     resources :bookings, only: [:show, :new, :create]
   end
