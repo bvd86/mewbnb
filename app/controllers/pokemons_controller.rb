@@ -1,7 +1,7 @@
 class PokemonsController < ApplicationController
   before_action :find_pokemon, only: [:show, :edit, :update]
   before_action :find_user
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!
 
   def edit; end
 

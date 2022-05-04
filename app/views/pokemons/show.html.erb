@@ -17,8 +17,7 @@
         <!-- POKEMON PICTURE AND RATE -->
         <div class="pokemon-details-left">
           <div class="pokemon-img">
-            <%= image_tag 'pikachu-silhouette.png', atl: "Your pokemon picture" %>
-            <!--img src=<%= @pokemon.picture %> alt="Picture"-->
+            <%= image_tag @pokemon.picture, atl: @pokemon.name %>
           </div>
 
           <div class="pokemon-rate-box d-flex justify-content-end align-items-center">
@@ -41,8 +40,7 @@
           <!-- POKEMON DESCRIPTION -->
           <div class="mt-3">
             <h4>Description</h4>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, cum beatae quia voluptatum suscipit quis vitae doloribus? Omnis magnam dignissimos quasi incidunt suscipit animi a aut quas beatae? Possimus, eius?</p>
-            <!--p><%= @pokemon.description %></p-->
+            <p><%= @pokemon.description %></p>
           </div>
           <p><b>Type</b>: <%= @pokemon.pokemon_type %></p>
 
@@ -66,7 +64,7 @@
         <%= link_to pokemon_path(p) do %>
           <div class="col">
             <div class="card" style="width: 240px;">
-              <%= image_tag "pikachu-silhouette.png", class:"card-img-top", alt:"..."%>
+              <%= image_tag p.picture, class:"card-img-top", alt:"..."%>
               <div class="card-body d-flex justify-content-between border-top">
                 <h5 class="card-title"><%= p.name  %></h5>
                 <p class="card-text"> $<%= p.rate %>/day</p>
