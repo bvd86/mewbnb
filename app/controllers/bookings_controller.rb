@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :find_booking, only: [:show, :edit, :update]
+  before_action :find_booking, only: [:show, :edit, :update, :cancel]
   before_action :find_user
 
   def index
@@ -15,9 +15,9 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.user = @user
     @booking.pokemon = Pokemon.find(params[:pokemon_id])
-    @booking.status = "requested"
+    @booking.status = "Available"
     if @booking.save!
-      redirect_to pokemons_path
+      redirect_to bookings_path
     else
       render :new
     end
@@ -27,10 +27,17 @@ class BookingsController < ApplicationController
 
   def edit; end
 
+  def cancel
+    @booking.status = "Canceled"
+    @booking.save!
+
+    redirect_to bookings_path
+  end
+
   def update
     @booking.update(booking_params)
 
-    redirect_to booking_path(@booking)
+    redirect_to bookings_path
   end
 
   private
