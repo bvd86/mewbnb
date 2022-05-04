@@ -1,9 +1,10 @@
 <%= simple_form_for @pokemon do |f| %>
   <%= f.input :name %>
   <%= f.input :pokemon_type, collection: ["normal", "fire", "water", "grass", "electric", "ice", "fighting", "poison", "psychic", "ground", "flying", "bug", "rock", "ghost", "dark", "dragon", "steel", "fairy"] %>
-  <%= f.input :locatio n%>
+  <%= f.input :location %>
   <%= f.input :level, collection: 1..100 %>
   <%= f.input :rate, as: :numeric %>
   <%= f.input :description %>
+
   <%= f.submit class: "btn btn-primary" %>
 <% end %>
