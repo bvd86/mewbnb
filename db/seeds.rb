@@ -6,27 +6,52 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
+require 'json'
+require 'rest-client'
+require 'open-uri'
+
 
 if User.count == 0
-  puts "will create trainer..."
+  puts "creating trainer..."
   user = User.create!({
     email: "user@mewbnb.com",
     password: "password123"
   })
 end
 
-10.times do
-  puts "will create pokemon..."
+20.times do
+  puts "creating pokemon..."
+  id = rand(1..151)
+  location_id = rand(1..93)
+
+  # For name & type
+  response = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{id}/"
+  poke_info = JSON.parse(response, symbolize_names: true)
+  # For description
+  response = RestClient.get "https://pokeapi.co/api/v2/pokemon-species/#{id}/"
+  poke_desc = JSON.parse(response, symbolize_names: true)
+  # For location
+  response = RestClient.get "https://pokeapi.co/api/v2/region/1/"
+  poke_location = JSON.parse(response, symbolize_names: true)
+
   pokemon = Pokemon.create!({
-    name: Faker::Games::Pokemon.name,
+    name: poke_info[:forms][0][:name].titleize,
     rate: rand(50..500),
-    description: Faker::Games::Pokemon.move,
-    location: Faker::Games::Pokemon.location,
+    description: poke_desc[:flavor_text_entries][0][:flavor_text],
+    location: poke_location[:locations][location_id][:name].titleize.tr("-", ""),
     user: User.first,
-    pokemon_type: ["normal", "fire", "water", "grass", "electric", "ice", "fighting", "poison", "psychic", "ground", "flying", "bug", "rock", "ghost", "dark", "dragon", "steel", "fairy"].sample,
-    level: rand(1..100)
+    pokemon_type: poke_info[:types][0][:type][:name].capitalize,
+    level: rand(1..100),
   })
-  puts "will create booking..."
+
+  pic_url = poke_info[:sprites][:front_default]
+
+  filename = File.basename(URI.parse(pic_url).path)
+  file = URI.open(pic_url)
+
+  pokemon.picture.attach(io: file, filename: filename)
+
+  puts "creating booking..."
   Booking.create!({
     pokemon: pokemon,
     status: ["Available", "Booked", "Canceled"].sample,
