@@ -4,6 +4,14 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = Booking.all
+
+    @bookings.each do |b|
+      if b.end_date + 1 < Time.now
+        b.status = "completed"
+        b.save!
+      end
+
+    end
   end
 
   def new

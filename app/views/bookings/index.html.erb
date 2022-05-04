@@ -1,12 +1,11 @@
 <h1>My bookings</h1>
 
-
-
+<!-- CURRENT BOOKINGS -->
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
 
   <% @bookings.each do |b| %>
-    <% if b.user == @user && b.status != "Cancelled" %>
+    <% if b.user == @user && b.status != "Cancelled" && b.status != "completed" %>
       <div class="col">
         <div class="card h-100">
           <%= image_tag "pikachu-silhouette.png", class:"card-img-top", alt:"Photo of #{b.pokemon.name}"%>
@@ -23,3 +22,28 @@
   <% end %>
 
 </div>
+
+<!-- PAST BOOKINGS -->
+
+<% if @bookings.where(user: @user, status: "completed").any? %>
+  <h3>Past Bookings</h3>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+
+    <% @bookings.each do |b| %>
+      <% if b.user == @user && b.status == "completed" %>
+        <div class="col">
+          <div class="card h-100">
+            <%= image_tag "pikachu-silhouette.png", class:"card-img-top", alt:"Photo of #{b.pokemon.name}"%>
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to b.pokemon.name, pokemon_path(b.pokemon) %></h5>
+              <p class="card-text">Avaible for pickup on: <%= b.start_date  %></p>
+              <p class="card-text">Must return by: <%= b.end_date  %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+  </div>
+<% end %>
