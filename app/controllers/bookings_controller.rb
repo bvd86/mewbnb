@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.user = @user
     @booking.pokemon = Pokemon.find(params[:pokemon_id])
-    @booking.status = "Available"
+    @booking.status = "Booked"
     if @booking.save!
       redirect_to bookings_path
     else
