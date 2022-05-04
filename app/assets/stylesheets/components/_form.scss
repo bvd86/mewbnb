@@ -1,0 +1,25 @@
+.booking-form {
+  box-shadow: 1px 1px 26px 5px rgba(0,0,0,0.2);
+  width: 50vw;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.submit {
+  margin: 0 auto;
+}
+
+.form-content {
+  display: flex;
+}
+
+.image-left-form {
+  width: 25vw;
+}
+
+.right-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex:auto;
+}
