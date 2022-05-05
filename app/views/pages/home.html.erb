@@ -4,7 +4,9 @@
     <div class="main_logo">
       <%= image_tag 'Pokemon_logo.png', alt: 'pokemon_logo', class:"pokemon_logo" %>
       <%= image_tag 'mew.png', alt: 'mew', class:"mew" %>
-      <button class="btn btn-grad" id="start-now">Start Now</button>
+      <%= link_to pokemons_path do %>
+        <button class="btn btn-grad" id="start-now">Start Now</button>
+      <% end %>
     </div>
 
 
