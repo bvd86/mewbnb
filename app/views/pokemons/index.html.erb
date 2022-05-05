@@ -1,48 +1,31 @@
-<div style="display: flex; justify-content: space-between">
-  <h1>Registered Pokemons</h1>
-  <%= link_to "➕ Add a pokemon", new_pokemon_path %>
-</div>
-<h4>Here is a list of all the registered pokemons on the platform.</h4>
-<br>
-<table style="table-layout: fixed; width: 70vw;">
-  <tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Level</th>
-    <th>Location</th>
-    <th>Rate</th>
-    <th>Availability</th>
-  </tr>
-  <% @pokemons.each do |p| %>
-    <% if p.booking != nil && p.booking.status.capitalize == "Available" %>
-      <tr>
-        <td><%= link_to p.name, pokemon_path(p) %></td>
-        <td><%= p.pokemon_type %></td>
-        <td><%= p.level %></td>
-        <td><%= p.location %></td>
-        <td><%= p.rate %></td>
-        <td><%= link_to "Book this pokemon", new_pokemon_booking_path(p) %></td>
-    </tr>
-    <% end %>
-  <% end %>
-</table>
-</div>
 
-<div class="card-container">
-<div class="card">
-  <div class="imgBox">
-    <%= image_tag 'Ivysaur.jpg', alt: 'ivysaur', class:"ivysaur" %>
+<div class="container">
+  <div>
+    <%= link_to "➕ Add a pokemon", new_pokemon_path %>
   </div>
-  <div class="contentBox">
-    <h2>Pokemon Name</h2>
-    <div class="type">
-      <h3>Type :</h3>
-      <span>Grass</span>
-    </div>
-    <div class="level">
-      <h3>Level :</h3>
-      <span></span>
-    </div>
-    <a href="#">Book Now</a>
+  <hr>
+  <h1 class="available">Available pokemons</h1>
+  <hr>
+  <div class="card-container">
+    <% @pokemons.each do |p| %>
+      <% if p.booking != nil && p.booking.status.capitalize == "Available" %>
+        <div class="card" data-text="<%= p.name %>">
+          <div class="imgBox">
+            <%= image_tag p.picture, alt: p.name, class:"ivysaur" %>
+          </div>
+          <div class="contentBox">
+            <h2><%= link_to p.name, pokemon_path(p) %></h2>
+            <div class="type">
+              <h3>Type :</h3>
+              <span><%= p.pokemon_type %></span>
+            </div>
+            <div class="level">
+              <h5>Level : <%= p.level %></h5>
+            </div>
+            <%= link_to "Book now", new_pokemon_booking_path(p), class: "btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
