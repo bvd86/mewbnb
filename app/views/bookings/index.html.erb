@@ -36,7 +36,7 @@
       <% if b.user == @user && b.status == "completed" %>
         <div class="col">
           <div class="card h-100">
-            <%= image_tag "pikachu-silhouette.png", class:"card-img-top", alt:"Photo of #{b.pokemon.name}"%>
+            <%= image_tag b.pokemon.picture, class:"card-img-top", alt:"Photo of #{b.pokemon.name}"%>
             <div class="card-body">
               <h5 class="card-title"><%= link_to b.pokemon.name, pokemon_path(b.pokemon) %></h5>
               <p class="card-text">Avaible for pickup on: <%= b.start_date  %></p>
