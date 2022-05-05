@@ -1,3 +1,7 @@
+# require 'json'
+# require 'rest-client'
+# require 'open-uri'
+
 class PokemonsController < ApplicationController
   before_action :find_pokemon, only: [:show, :edit, :update, :destroy]
   before_action :find_user
@@ -15,11 +19,20 @@ class PokemonsController < ApplicationController
   def create
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.user = @user
-     if @pokemon.save!
-       redirect_to pokemon_path(@pokemon)
-     else
-       render :new
-     end
+
+    # Adding picture to pokemon
+    # response = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{@pokemon.name}/"
+    # poke_info = JSON.parse(response, symbolize_names: true)
+    # pic_url = poke_info[:sprites][:front_default]
+    # filename = File.basename(URI.parse(pic_url).path)
+    # file = URI.open(pic_url)
+    # @pokemon.picture.attach(io: file, filename: filename)
+
+    if @pokemon.save!
+      redirect_to pokemon_path(@pokemon)
+    else
+      render :new
+    end
    end
 
   def show;

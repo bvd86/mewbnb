@@ -19,7 +19,7 @@ if User.count == 0
   })
 end
 
-20.times do
+40.times do
   puts "creating pokemon..."
   id = rand(1..151)
   location_id = rand(1..93)
