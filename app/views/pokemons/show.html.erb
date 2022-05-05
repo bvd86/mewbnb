@@ -19,7 +19,7 @@
         <!-- POKEMON PICTURE AND RATE -->
         <div class="pokemon-details-left">
           <div class="pokemon-img">
-            <% p.picture.nil? ? picture = "https://assets.thesilphroad.com/img/pokemon/icons/96x96/#{@p.pokedex_entry}.png" : picture = p.picture %>
+            <% p.picture.nil? ? picture = "https://assets.thesilphroad.com/img/pokemon/icons/96x96/#{p.pokedex_entry}.png" : picture = p.picture %>
             <%= image_tag picture, alt: @pokemon.name %>
           </div>
 
