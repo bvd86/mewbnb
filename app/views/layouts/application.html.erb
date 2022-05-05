@@ -16,11 +16,21 @@
 
 
   <body>
-    <div class="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-    </div>
-      <%= yield %>
+    <% if content_for?(:content) %>
+      <div class="container" id="content">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+      <%= yield(:content) %>
+    <% else %>
+      <div class="container" id="content">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+      </div>
+    <% end %>
+
+
   </body>
 
   <%= render "shared/footer" %>
