@@ -9,7 +9,9 @@
       <div class="col">
         <%= link_to booking_path(b) do %>
           <div class="card h-100">
-            <%= image_tag b.pokemon.picture, class:"card-img-top", alt:"Photo of #{b.pokemon.name}"%>
+            <% picture = "https://assets.thesilphroad.com/img/pokemon/icons/96x96/#{b.pokemon.pokedex_entry}.png" %>
+            <%= image_tag picture, alt: b.pokemon.name %>
+            <%#= image_tag b.pokemon.picture, class:"card-img-top", alt:"Photo of #{b.pokemon.name}"%>
             <div class="card-body">
               <h5 class="card-title"><%= link_to b.pokemon.name, booking_path(b) %></h5>
               <p class="card-text">Avaible for pickup on: <%= b.start_date.strftime("%B %d, %Y")  %></p>
@@ -36,7 +38,9 @@
       <% if b.user == @user && b.status == "completed" %>
         <div class="col">
           <div class="card h-100">
-            <%= image_tag b.pokemon.picture, class:"card-img-top", alt:"Photo of #{b.pokemon.name}"%>
+            <% picture = "https://assets.thesilphroad.com/img/pokemon/icons/96x96/#{b.pokemon.pokedex_entry}.png" %>
+            <%= image_tag picture, alt: b.pokemon.name %>
+            <%#= image_tag b.pokemon.picture, class:"card-img-top", alt:"Photo of #{b.pokemon.name}"%>
             <div class="card-body">
               <h5 class="card-title"><%= link_to b.pokemon.name, booking_path(b) %></h5>
               <p class="card-text">Avaible for pickup on: <%= b.start_date  %></p>
