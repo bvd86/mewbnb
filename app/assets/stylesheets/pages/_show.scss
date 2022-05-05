@@ -6,7 +6,7 @@
   border-top-left-radius: 32px;
 
   img {
-    height: 400px;
+    width: 30vw;
   }
 }
 
@@ -30,9 +30,7 @@
 }
 
 .container-pokemon-box {
-  margin-left: 150px;
-  margin-right: 150px;
-
+  margin: 0 auto;
   h1{
     font-size: 3.6rem;
     color: $st-patricks-blue;
@@ -45,6 +43,8 @@
   border: 1px solid lightgray;
   border-radius: 32px;
   box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
+  width: 70vw;
+  margin: 0 auto;
 }
 
 .pokemon-details-right {
@@ -56,6 +56,16 @@
   }
 }
 
+.pokemon-details-lower-right {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.pokemon-details-left {
+  align-self: center;
+}
+
 .pokemon-header {
   margin-left: 15px;
   margin-bottom: 24px;
@@ -65,6 +75,16 @@
     margin-left: 10px;
     color: $french-blue;
   }
+}
+
+.pokemon-explore {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pokemon-explore-card {
+  margin: 0 auto;
+  margin-bottom: 10px;
 }
 
 .pokemon-rate-box {

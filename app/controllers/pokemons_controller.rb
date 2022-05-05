@@ -1,5 +1,5 @@
 class PokemonsController < ApplicationController
-  before_action :find_pokemon, only: [:show, :edit, :update]
+  before_action :find_pokemon, only: [:show, :edit, :update, :destroy]
   before_action :find_user
 
   def edit; end
@@ -31,6 +31,12 @@ class PokemonsController < ApplicationController
     @pokemon.update(pokemon_params)
 
     redirect_to pokemon_path(@pokemon)
+  end
+
+  def destroy
+    @pokemon.destroy!
+
+    redirect_to pokemons_path
   end
 
   private
