@@ -1,5 +1,9 @@
-<h1><%= @booking.pokemon.name %></h1>
+<h1>Your booking has been confirmed!</h1>
+
+<p>Booked from <%= @booking.start_date%> to <%= @booking.end_date %></p>
+
+<h2><%= @booking.pokemon.name %></h2>
+<%= image_tag @booking.pokemon.picture, atl:@booking.pokemon.name %>
 <h3>Rate: <%= @booking.pokemon.rate %> / Level: <%= @booking.pokemon.level %></h3>
 <p>Type: <%= @booking.pokemon.pokemon_type %> / Location: <%= @booking.pokemon.location %></p>
 <p><%= @booking.pokemon.description %></p>
-<img src=<%= @booking.pokemon.picture %> alt="Picture">
