@@ -1,15 +1,17 @@
-<div class="parent">
-    <%= image_tag 'Pokemon_space.jpg', alt: 'background', class:"background" %>
-  <div class="main_logo">
-    <%= image_tag 'Pokemon_logo.png', alt: 'pokemon_logo', class:"pokemon_logo" %>
-    <%= image_tag 'mew.png', alt: 'mew', class:"mew" %>
-    <button class="btn btn-grad" id="start-now">Start Now</button>
+<% content_for :content do %>
+  <div class="parent">
+      <%= image_tag 'Pokemon_space.jpg', alt: 'background', class:"background" %>
+    <div class="main_logo">
+      <%= image_tag 'Pokemon_logo.png', alt: 'pokemon_logo', class:"pokemon_logo" %>
+      <%= image_tag 'mew.png', alt: 'mew', class:"mew" %>
+      <button class="btn btn-grad" id="start-now">Start Now</button>
+    </div>
+
+
+
+    <div class="trainer-container">
+        <%= image_tag 'male_trainer.png', alt: 'male_trainer', class:"male_trainer" %>
+        <%= image_tag 'female_trainer.png', alt: 'female_trainer', class:"female_trainer" %>
+    </div>
   </div>
-
-
-
-  <div class="trainer-container">
-      <%= image_tag 'male_trainer.png', alt: 'male_trainer', class:"male_trainer" %>
-      <%= image_tag 'female_trainer.png', alt: 'female_trainer', class:"female_trainer" %>
-  </div>
-</div>
+<% end %>
