@@ -64,13 +64,12 @@
 
   <div class="pokemon-explore">
 
-
     <% @pokemons.sample(3).each do |p| %>
      <div class="pokemon-explore-card">
       <%= link_to pokemon_path(p) do %>
         <div class="col">
           <div class="card" style="width: 240px;">
-            <%= image_tag "pikachu-silhouette.png", class:"card-img-top", alt:"..."%>
+            <%= image_tag p.picture, class:"card-img-top", alt:p.name%>
             <div class="card-body d-flex justify-content-between border-top">
               <h5 class="card-title"><%= p.name  %></h5>
               <p class="card-text"> $<%= p.rate %>/day</p>
