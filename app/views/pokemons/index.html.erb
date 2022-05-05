@@ -10,7 +10,8 @@
       <% if p.booking != nil && p.booking.status.capitalize == "Available" %>
         <div class="card" data-text="<%= p.name %>">
           <div class="imgBox">
-            <%= image_tag 'Ivysaur.jpg', alt: 'ivysaur', class:"ivysaur" %>
+            <% picture = "https://assets.thesilphroad.com/img/pokemon/icons/96x96/#{@p.pokedex_entry}.png" %>
+            <%= image_tag picture, alt: 'ivysaur', class:"ivysaur" %>
           </div>
           <div class="contentBox">
             <h2><%= link_to p.name, pokemon_path(p) %></h2>
