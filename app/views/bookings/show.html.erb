@@ -1,9 +1,53 @@
-<h1>Your booking has been confirmed!</h1>
+<%= link_to 'Back', bookings_path %>
+<% if @booking.status == "Booked" %>
+  <h1 class="mt-3 mb-3">Your booking has been confirmed!</h1>
+<% else %>
+  <h1 class="mt-3 mb-3">Past Booking</h1>
+<% end %>
 
-<p>Booked from <%= @booking.start_date%> to <%= @booking.end_date %></p>
+<div class="container-confirmation">
+  <div>
+    <p class="mt-2"><b>Booking Details</b></p>
+    <p>Booked from <b><%= @booking.start_date.strftime("%B %d, %Y") %></b> to <b><%= @booking.end_date.strftime("%B %d, %Y") %></b></p>
+    Pick-up location: <%= @booking.pokemon.location %></p>
+  </div>
 
-<h2><%= @booking.pokemon.name %></h2>
-<%= image_tag @booking.pokemon.picture, atl:@booking.pokemon.name %>
-<h3>Rate: <%= @booking.pokemon.rate %> / Level: <%= @booking.pokemon.level %></h3>
-<p>Type: <%= @booking.pokemon.pokemon_type %> / Location: <%= @booking.pokemon.location %></p>
-<p><%= @booking.pokemon.description %></p>
+  <div class="border-top mb-3" id="confirmation-pokemon">
+    <p class="mt-2 mb-2"><b>Pokemon</b></p>
+    <div class="d-flex align-items-center gap-3">
+        <%= link_to pokemon_path(@booking.pokemon) do%>
+          <%= image_tag @booking.pokemon.picture, atl:@booking.pokemon.name, class:"avatar avatar-large" %>
+        <% end %>
+
+        <%= link_to @booking.pokemon.name, pokemon_path(@booking.pokemon) %>
+
+      <div>
+        <p>Level: <%= @booking.pokemon.level %></p>
+      </div>
+      <div>
+        <p>Type: <%= @booking.pokemon.pokemon_type %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-top mb-4">
+    <p class="mt-2"><b>Charges</b></p>
+
+    <table>
+      <tr>
+        <td>Rate</td>
+        <td>$<%= @booking.pokemon.rate %>/day</td>
+      </tr>
+      <tr>
+        <% if (@booking.end_date - @booking.start_date).to_i == 0 %>
+          <td>Total</td>
+          <td> $<%= @booking.pokemon.rate %></td>
+        <% else %>
+          <td>Total</td>
+          <td> $<%= (@booking.end_date - @booking.start_date).to_i*@booking.pokemon.rate  %></td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+
+</div>

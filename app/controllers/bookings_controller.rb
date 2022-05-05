@@ -36,7 +36,7 @@ class BookingsController < ApplicationController
   def edit; end
 
   def cancel
-    @booking.status = "Cancelled"
+    @booking.status = "Canceled"
     @booking.save!
 
     redirect_to bookings_path

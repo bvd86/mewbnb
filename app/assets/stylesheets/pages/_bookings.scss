@@ -1,0 +1,52 @@
+#confirmation-pokemon {
+  a {
+    text-decoration: none;
+    color: $french-blue;
+
+    &:hover {
+      color: $jonquil;
+    }
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+table {
+	width: 90%;
+	margin:50px auto;
+	table-layout:fixed;
+	border-collapse: collapse;
+	}
+
+	td {
+	padding:1em 0 0 0;
+	vertical-align:bottom;
+	}
+
+	td span{
+   	background-color:#fff;
+	}
+
+	td:first-child {
+	text-align: left;
+	font-weight: 700;
+  overflow: hidden;
+    position: relative;
+	}
+
+td:first-child::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width:1500px;
+  height:0px ;
+  margin-left: 1em;
+  border-bottom:2px dotted grey;
+}
+
+  	td:last-child {
+	text-align:right;
+	width:3em;
+  	}
