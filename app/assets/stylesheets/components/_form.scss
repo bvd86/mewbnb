@@ -23,3 +23,21 @@
   justify-content: center;
   flex:auto;
 }
+
+.poke-booking-form {
+  box-shadow: 1px 1px 26px 5px rgba(0,0,0,0.2);
+  width: 50vw;
+  margin: 0 auto;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.poke-btn{
+  display: flex;
+  justify-content: center;
+}
+
+.poke-h2{
+  text-align: center;
+}
