@@ -3,7 +3,8 @@
   <%= simple_form_for [@pokemon, @booking] do |f| %>
     <div class="form-content">
       <div class="left-form">
-        <%= image_tag @pokemon.picture, class:"image-left-form", alt:@pokemon.name%>
+        <% picture = "https://assets.thesilphroad.com/img/pokemon/icons/96x96/#{@pokemon.pokedex_entry}.png" %>
+        <%= image_tag picture, class:"image-left-form", alt:@pokemon.name%>
       </div>
       <div class="right-form">
         <div class="start-date">
