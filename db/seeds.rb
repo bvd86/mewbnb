@@ -36,6 +36,7 @@ end
 
   pokemon = Pokemon.create!({
     name: poke_info[:forms][0][:name].titleize,
+    pokedex_entry: id,
     rate: rand(50..500),
     description: poke_desc[:flavor_text_entries][0][:flavor_text],
     location: poke_location[:locations][location_id][:name].titleize.tr("-", ""),
