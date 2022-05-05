@@ -4,6 +4,14 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = Booking.all
+
+    @bookings.each do |b|
+      if b.end_date + 1 < Time.now
+        b.status = "completed"
+        b.save!
+      end
+
+    end
   end
 
   def new
@@ -17,7 +25,7 @@ class BookingsController < ApplicationController
     @booking.pokemon = Pokemon.find(params[:pokemon_id])
     @booking.status = "Booked"
     if @booking.save!
-      redirect_to bookings_path
+      redirect_to booking_path(@booking)
     else
       render :new
     end
