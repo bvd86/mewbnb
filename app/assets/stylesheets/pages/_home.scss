@@ -83,6 +83,7 @@ body, html {
 
 #start-now {
   position: absolute;
-  left: 22vw;
-  top:150%
+  left: 50%;
+  top:50%;
+  transform: translate(-50%, 600%);
 }
