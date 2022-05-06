@@ -1,6 +1,6 @@
-require 'json'
-require 'rest-client'
-require 'open-uri'
+# require 'json'
+# require 'rest-client'
+# require 'open-uri'
 
 class PokemonsController < ApplicationController
   before_action :find_pokemon, only: [:show, :edit, :update, :destroy]
