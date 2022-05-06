@@ -45,7 +45,7 @@ end
     level: rand(1..100),
   })
 
-  pic_url = poke_info[:sprites][:front_default]
+  pic_url = poke_info[:sprites][:other][:"official-artwork"][:front_default]
 
   filename = File.basename(URI.parse(pic_url).path)
   file = URI.open(pic_url)

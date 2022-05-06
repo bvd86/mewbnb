@@ -21,9 +21,9 @@ class PokemonsController < ApplicationController
     @pokemon.user = @user
 
     # Adding picture to pokemon
-    # response = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{@pokemon.name}/"
+    # response = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{@pokemon.name.downcase}/"
     # poke_info = JSON.parse(response, symbolize_names: true)
-    # pic_url = poke_info[:sprites][:front_default]
+    # pic_url = poke_info[:sprites][:other][:"official-artwork"][:front_default]
     # filename = File.basename(URI.parse(pic_url).path)
     # file = URI.open(pic_url)
     # @pokemon.picture.attach(io: file, filename: filename)
