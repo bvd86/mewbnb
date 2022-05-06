@@ -1,6 +1,6 @@
-# require 'json'
-# require 'rest-client'
-# require 'open-uri'
+require 'json'
+require 'rest-client'
+require 'open-uri'
 
 class PokemonsController < ApplicationController
   before_action :find_pokemon, only: [:show, :edit, :update, :destroy]
@@ -25,8 +25,8 @@ class PokemonsController < ApplicationController
     # poke_info = JSON.parse(response, symbolize_names: true)
     # pic_url = poke_info[:sprites][:other][:"official-artwork"][:front_default]
     # filename = File.basename(URI.parse(pic_url).path)
-    #file = URI.open(pic_url)
-    #@pokemon.picture.attach(io: file, filename: filename)
+    # file = URI.open(pic_url)
+    # @pokemon.picture.attach(io: file, filename: filename)
 
     if @pokemon.save!
       redirect_to pokemon_path(@pokemon)

@@ -19,7 +19,7 @@
         <!-- POKEMON PICTURE AND RATE -->
         <div class="pokemon-details-left">
           <div class="pokemon-img">
-            <% picture = "https://assets.thesilphroad.com/img/pokemon/icons/96x96/#{@pokemon.pokedex_entry}.png" %>
+            <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{@pokemon.pokedex_entry}.png" %>
             <%= image_tag picture, alt: @pokemon.name %>
           </div>
 
@@ -70,7 +70,7 @@
       <%= link_to pokemon_path(p) do %>
         <div class="col">
           <div class="card" style="width: 240px;">
-            <% picture = "https://assets.thesilphroad.com/img/pokemon/icons/96x96/#{p.pokedex_entry}.png" %>
+            <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{p.pokedex_entry}.png" %>
             <%= image_tag picture, class:"card-img-top", alt: p.name %>
             <div class="card-body d-flex justify-content-between border-top">
               <h5 class="card-title"><%= p.name  %></h5>
