@@ -19,6 +19,7 @@ if User.count == 0
   })
 end
 
+
 40.times do
   puts "creating pokemon..."
   id = rand(1..151)
@@ -45,7 +46,7 @@ end
     level: rand(1..100),
   })
 
-  pic_url = poke_info[:sprites][:front_default]
+  pic_url = poke_info[:sprites][:other][:"official-artwork"][:front_default]
 
   filename = File.basename(URI.parse(pic_url).path)
   file = URI.open(pic_url)
