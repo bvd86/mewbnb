@@ -85,6 +85,10 @@
 .pokemon-explore-card {
   margin: 0 auto;
   margin-bottom: 10px;
+
+  p {
+    color: $french-blue;
+  }
 }
 
 .pokemon-rate-box {
