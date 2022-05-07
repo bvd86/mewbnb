@@ -2,7 +2,19 @@
 <% if @pokemons.nil? %>
   <p>You do not have any pokemons</p>
 <% else %>
-  <% @pokemons.each do |p| %>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% @pokemons.each do |p| %>
+
+      <div class="col">
+        <div class="card">
+          <%= image_tag p. %>
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+        </div>
+      </div>
+  </div>
 
     <%= p.name %>
     <%= image_tag p.picture %>
