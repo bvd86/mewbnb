@@ -3,7 +3,7 @@
   <hr>
   <h1 class="available">Available pokemons</h1>
   <hr>
-  
+
   <div class="map-container">
     <div class="map-box"
       data-controller="mapbox"
@@ -28,7 +28,7 @@
               <span><%= p.pokemon_type %></span>
             </div>
             <div class="level">
-              <h5>Level : <%= p.level %></h5>
+              <h5>Level: <%= p.level %> - Rate: $<%= p.rate %>/day</h5>
             </div>
             <%= link_to "Book now", new_pokemon_booking_path(p), class: "btn-primary" %>
           </div>

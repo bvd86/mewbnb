@@ -19,7 +19,7 @@
     <div class="d-flex align-items-center gap-3">
         <%= link_to pokemon_path(@booking.pokemon) do%>
             <% picture = "https://assets.thesilphroad.com/img/pokemon/icons/96x96/#{@booking.pokemon.pokedex_entry}.png" %>
-            <%= image_tag picture, alt: @booking.pokemon.name %>
+            <%= image_tag @booking.pokemon.picture, alt: @booking.pokemon.name %>
           <%#= image_tag @booking.pokemon.picture, atl:@booking.pokemon.name, class:"avatar avatar-large" %>
         <% end %>
 
