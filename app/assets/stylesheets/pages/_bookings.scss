@@ -50,3 +50,26 @@ td:first-child::after {
 	text-align:right;
 	width:3em;
   	}
+
+#location-marker {
+  width: 1rem !important;
+}
+
+#past-booking-location {
+  p {
+    margin-top: 0.25rem;
+    margin-left: 0.25rem;
+  }
+}
+
+.padding-x {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+#past-booking {
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
