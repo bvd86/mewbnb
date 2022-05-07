@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-<%= link_to 'Back', bookings_path %>
-<% if @booking.status == "Confirmed" %>
-=======
 <%= link_to 'All bookings', bookings_path %>
-<% if @booking.status == "Booked" %>
->>>>>>> 8cd9f9163d37c2e8caf2a284f9bc6e074b816515
+<% if @booking.status == "Confirmed" %>
   <h1 class="mt-3 mb-3">Your booking has been confirmed!</h1>
 <% else %>
   <h1 class="mt-3 mb-3">Your Booking is pending confirmation.</h1>
