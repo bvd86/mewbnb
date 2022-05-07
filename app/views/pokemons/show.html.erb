@@ -57,6 +57,10 @@
 
     </div>
 
+<%= link_to "Delete #{@pokemon.name}",
+            pokemon_path(@pokemon),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
     <!--li><%#= link_to "Edit this Pokemon", edit_pokemon_path %></li-->
 </div>
 
