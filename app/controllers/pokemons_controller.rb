@@ -28,7 +28,7 @@ class PokemonsController < ApplicationController
   def create
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.user = @user
-    
+
     # Fetching the pokemon type
     response = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{@pokemon.name.downcase}/"
     poke_info = JSON.parse(response, symbolize_names: true)
@@ -36,7 +36,7 @@ class PokemonsController < ApplicationController
     @pokemon.pokemon_type = poke_type.capitalize
 
     attach_pic
-    
+
     if @pokemon.save!
       redirect_to pokemon_path(@pokemon)
     else
@@ -68,6 +68,10 @@ class PokemonsController < ApplicationController
     @pokemon.destroy!
 
     redirect_to pokemons_path
+  end
+
+  def my_pokemons
+    @pokemons = Pokemon.where(user: current_user)
   end
 
   private
