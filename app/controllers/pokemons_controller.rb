@@ -29,7 +29,7 @@ class PokemonsController < ApplicationController
     attach_pic
 
     if @pokemon.save!
-    redirect_to pokemon_path(@pokemon)
+      redirect_to pokemon_path(@pokemon)
     else
       render :new
     end
