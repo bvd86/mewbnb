@@ -2,7 +2,7 @@
 <% if @booking.status == "Confirmed" %>
   <h1 class="mt-3 mb-3">Your booking has been confirmed!</h1>
 <% else %>
-  <h1 class="mt-3 mb-3">Past Booking</h1>
+  <h1 class="mt-3 mb-3">Your Booking is pending confirmation.</h1>
 <% end %>
 
 <div class="container-confirmation">
@@ -52,4 +52,8 @@
     </table>
   </div>
 
+<%= link_to "Delete this booking",
+            booking_path(@booking),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
 </div>
