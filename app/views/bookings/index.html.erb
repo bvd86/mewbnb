@@ -1,56 +1,81 @@
-<h1>My bookings</h1>
+<h1 class="mb-2">My bookings</h1>
 
 <!-- CURRENT BOOKINGS -->
 
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+<div>
 
-  <% @bookings.each do |b| %>
-    <% if b.user == @user && b.status != "Cancelled" && b.status != "completed" %>
-      <div class="col">
-        <%= link_to booking_path(b) do %>
-          <div class="card h-100">
-            <% picture = "https://assets.thesilphroad.com/img/pokemon/icons/96x96/#{b.pokemon.pokedex_entry}.png" %>
-            <%= image_tag picture, alt: b.pokemon.name %>
-            <%#= image_tag b.pokemon.picture, class:"card-img-top", alt:"Photo of #{b.pokemon.name}"%>
-            <div class="card-body">
-              <h5 class="card-title"><%= link_to b.pokemon.name, booking_path(b) %></h5>
-              <p class="card-text">Avaible for pickup on: <%= b.start_date.strftime("%B %d, %Y")  %></p>
-              <p class="card-text">Must return by: <%= b.end_date.strftime("%B %d, %Y")  %></p>
-              <%= link_to "Cancel this booking", cancel_booking_path(b), method: :patch,
-                      data: {confirm: 'You are about to cancel you booking for this pokemon, are you sure?'} %>
+    <% @bookings.each do |b| %>
+      <% if b.user == @user && b.status != "Cancelled" && b.status != "completed" %>
+
+        <div class="card-product mb-3 border me-2 justify-content-between">
+          <div class="d-flex">
+            <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{b.pokemon.pokedex_entry}.png" %>
+            <%= image_tag picture, alt: b.pokemon.name, class: "avatar" %>
+            <div class="card-product-infos">
+              <h2><%= b.pokemon.name %></h2>
+              <div class="d-flex mt-2">
+                <!-- Booking status -->
+                <% if b.status == "Booked" %>
+                  <div class="d-flex gap-1 padding-x">
+                    <p style="color: green;"><i class="fa-solid fa-circle-check"></i></p>
+                    <p><%= b.status %>!</p>
+                  </div>
+                <% else %>
+                  <div class="d-flex gap-1 padding-x">
+                    <p style="color: orange;"><i class="fa-solid fa-clock"></i></p>
+                    <p><%= b.status %></p>
+                  </div>
+                <% end %>
+
+                <!-- Booking dates -->
+                <p class="padding-x border-start"><%= b.start_date.strftime("%B %d, %Y")  %> - <%= b.end_date.strftime("%B %d, %Y")  %></p>
+                <!-- Pokemon location -->
+                <p class="padding-x border-start">Location: <%= b.pokemon.location %></p>
+              </div>
             </div>
           </div>
-        <% end %>
-      </div>
-    <% end %>
-  <% end %>
 
-</div>
+
+          <div class="d-grid btn-booking-index">
+            <%= link_to "Details", booking_path(b), class:"btn btn-sm btn-primary mb-0" %>
+            <%= link_to "Cancel", cancel_booking_path(b), method: :patch,
+                      data: {confirm: 'You are about to cancel you booking for this pokemon, are you sure?'},
+                      class: "btn btn-sm btn-outline-warning" %>
+          </div>
+
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
 
 <!-- PAST BOOKINGS -->
 
 <% if @bookings.where(user: @user, status: "completed").any? %>
-  <h3>Past Bookings</h3>
 
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+  <h3 class="my-3">Past Bookings</h3>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mb-5" id="past-booking">
 
     <% @bookings.each do |b| %>
       <% if b.user == @user && b.status == "completed" %>
-        <div class="col">
-          <div class="card h-100">
-            <% picture = "https://assets.thesilphroad.com/img/pokemon/icons/96x96/#{b.pokemon.pokedex_entry}.png" %>
+
+        <%= link_to booking_path(b) do %>
+          <div class="card-product mb-3 border me-2">
+            <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{b.pokemon.pokedex_entry}.png" %>
             <%= image_tag picture, alt: b.pokemon.name %>
-            <%#= image_tag b.pokemon.picture, class:"card-img-top", alt:"Photo of #{b.pokemon.name}"%>
-            <div class="card-body">
-              <h5 class="card-title"><%= link_to b.pokemon.name, booking_path(b) %></h5>
-              <p class="card-text">Avaible for pickup on: <%= b.start_date  %></p>
-              <p class="card-text">Must return by: <%= b.end_date  %></p>
+            <div class="card-product-infos">
+              <h2><%= b.pokemon.name %></h2>
+              <p><%= b.start_date.strftime("%B %d, %Y")  %> - <%= b.end_date.strftime("%B %d, %Y")  %></p>
+              <div class="d-flex align-items-center" id="past-booking-location">
+                <%= image_tag "location.png", id:"location-marker" %>
+                <p><%= b.pokemon.location %></p>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     <% end %>
-
   </div>
 <% end %>
 

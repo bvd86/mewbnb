@@ -28,17 +28,25 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-      <ul class="navbar-nav me-auto nav-text">
+      <ul class="navbar-nav me-auto nav-text align-items-center">
         <% if user_signed_in? %>
           <li class="nav-item <%= 'active' if current_page?("#") %>">
 
             <%= link_to "Browse Pokemon", pokemons_path, class: "nav-link" %>
           </li>
+          <li>
+            <% if @user.is_gym_leader %>
+            <%= link_to "➕ Add a pokemon", new_pokemon_path, class: "nav-link" %>
+            <% end %>
+            </li>
+          <!-- AVATAR MENU -->
           <li class="nav-item dropdown">
             <%= image_tag "pokemon-trainer.png", class: "avatar dropdown-toggle avatar-large avatar-bordered", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
 
             <div class="dropdown-menu dropdown-menu-end nav-text" aria-labelledby="navbarDropdown">
               <%= link_to "My bookings", bookings_path, class: "dropdown-item" %>
+              <%= link_to "My Listings", my_pokemons_path, class: "dropdown-item" %>
+
 
               <%= link_to "Account", user_path(@user), class: "dropdown-item border-bottom" %>
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
