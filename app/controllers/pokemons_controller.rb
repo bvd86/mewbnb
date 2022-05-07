@@ -10,6 +10,15 @@ class PokemonsController < ApplicationController
 
   def index
     @pokemons = Pokemon.all.order(rate: :desc)
+
+    # Map attributes
+    @markers = @pokemons.geocoded.map do |pokemon|
+      {
+        lat: pokemon.latitude,
+        lng: pokemon.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { pokemon: pokemon })
+      }
+    end
   end
 
   def new
@@ -19,14 +28,6 @@ class PokemonsController < ApplicationController
   def create
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.user = @user
-
-    # Adding picture to pokemon
-    # response = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{@pokemon.name.downcase}/"
-    # poke_info = JSON.parse(response, symbolize_names: true)
-    # pic_url = poke_info[:sprites][:other][:"official-artwork"][:front_default]
-    # filename = File.basename(URI.parse(pic_url).path)
-    # file = URI.open(pic_url)
-    # @pokemon.picture.attach(io: file, filename: filename)
 
     if @pokemon.save!
       redirect_to pokemon_path(@pokemon)
