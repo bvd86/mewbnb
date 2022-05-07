@@ -11,11 +11,11 @@ class PokemonsController < ApplicationController
   def index
 
     # Search
-      if params[:query].present?
-        @pokemons = Pokemon.search_by_name_and_description(params[:query])
-      else
-         @pokemons = Pokemon.all.order(rate: :desc)
-      end
+    if params[:query].present?
+      @pokemons = Pokemon.search_pokemon(params[:query])
+    else
+       @pokemons = Pokemon.all.order(rate: :desc)
+    end
 
     # Map attributes
     @markers = @pokemons.geocoded.map do |pokemon|
@@ -79,7 +79,6 @@ class PokemonsController < ApplicationController
 
   def my_pokemons
     @pokemons = Pokemon.where(user: current_user)
-    raise
   end
 
   private
