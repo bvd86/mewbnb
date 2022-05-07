@@ -1,4 +1,4 @@
-<h1>My bookings</h1>
+<h1 class="mb-2">My bookings</h1>
 
 <!-- CURRENT BOOKINGS -->
 
@@ -37,7 +37,7 @@
           </div>
 
 
-          <div class="d-flex flex-column gap-1 btn-booking-index">
+          <div class="d-grid gap-2 btn-booking-index">
             <%= link_to "Details", booking_path(b), class:"btn btn-sm btn-primary" %>
             <%= link_to "Cancel", cancel_booking_path(b), method: :patch,
                       data: {confirm: 'You are about to cancel you booking for this pokemon, are you sure?'},
