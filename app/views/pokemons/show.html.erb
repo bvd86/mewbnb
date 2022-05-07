@@ -47,10 +47,8 @@
             <p><%= @pokemon.description %></p>
           </div>
           <p><b>Type</b>: <%= @pokemon.pokemon_type %></p>
-
-          <div class="booking-btn">
-            <%= link_to "Book this Pokémon", new_pokemon_booking_path(@pokemon), class:"btn btn-grad" %>
-          </div>
+          <br>
+          <%= render "shared/booking_form" %>
         </div>
       </div>
 
