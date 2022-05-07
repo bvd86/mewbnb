@@ -1,5 +1,7 @@
 <div class="btn-back">
-  <%= link_to "back", pokemons_path %>
+  <%= link_to pokemons_path do %>
+    <i class="fa-solid fa-reply"></i>
+    <% end %>
 </div>
 <div class="container-pokemon-box">
 
@@ -59,7 +61,7 @@
 </div>
 
 <div class="map-container">
-  <div style="width: 100%vw; height: 55vw; position: relative;"
+  <div class="map-box"
     data-controller="mapbox"
     data-mapbox-markers-value="<%= @markers.to_json %>"
     data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
