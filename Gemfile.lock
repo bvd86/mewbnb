@@ -223,9 +223,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
-    simple_form_autocomplete (1.1.0)
-      activesupport
-      simple_form
     spring (4.0.0)
     sprockets (4.0.3)
       concurrent-ruby (~> 1.0)
@@ -295,7 +292,6 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
   simple_form!
-  simple_form_autocomplete
   spring
   turbolinks (~> 5)
   tzinfo-data
@@ -307,4 +303,4 @@ RUBY VERSION
    ruby 3.0.0p0
 
 BUNDLED WITH
-   2.3.12
+   2.3.10
