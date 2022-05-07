@@ -3,6 +3,7 @@
   width: 100%;
   margin: 0 auto;
   padding: 10px;
+  border-radius: 10px;
 }
 
 .submit {
@@ -39,5 +40,10 @@
 }
 
 .poke-h2{
+  text-align: center;
+}
+
+.container-explore-box h2{
+  margin: 20px auto;
   text-align: center;
 }

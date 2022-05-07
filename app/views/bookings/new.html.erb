@@ -1,4 +1,11 @@
-<h2 style="text-align: center;">Create a booking</h2>
+<div class="return-title">
+  <div class="btn-back">
+    <%= link_to pokemons_path do %>
+      <i class="fa-solid fa-reply"></i>
+      <% end %>
+  </div>
+  <h2 style="text-align: center;">Create a booking</h2>
+</div>
   <div class="booking-form">
   <%= simple_form_for [@pokemon, @booking] do |f| %>
     <div class="form-content">
