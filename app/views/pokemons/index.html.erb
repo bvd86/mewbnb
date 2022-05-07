@@ -1,3 +1,4 @@
+
 <div class="container">
   <div>
     <%= link_to "➕ Add a pokemon", new_pokemon_path %>
@@ -5,18 +6,10 @@
   <hr>
   <h1 class="available">Available pokemons</h1>
   <hr>
-  <div class="map-container">
-    <div style="width: 100%vw; height: 55vw; position: relative;"
-      data-controller="mapbox"
-      data-mapbox-markers-value="<%= @markers.to_json %>"
-      data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-    </div>
-  </div>
-  <hr>
   <div class="card-container">
     <% @pokemons.each do |p| %>
       <% if p.booking != nil && p.booking.status.capitalize == "Available" %>
-        <div class="card" data-text="<%= p.name %>">
+        <div class="card" data-text="<%= p.name %>" style="--bubble-color: rgb(<%= rand(255) %>, <%= rand(255) %>, <%= rand(255) %>); --text-color: rgb(<%= rand(255) %>, <%= rand(255) %>, <%= rand(255) %>) ">
           <div class="imgBox">
             <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{p.pokedex_entry}.png" %>
             <%= image_tag picture, alt: p.name, class:"ivysaur" %>

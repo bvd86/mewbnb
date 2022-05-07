@@ -3,6 +3,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500&display=swap');
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .container-landing {
   display:flex;
   background: linear-gradient(135deg, #ffffff 0%, #FDCFCC 100%);
@@ -49,6 +54,11 @@
   justify-content: center;
   font-family: 'Roboto Flex', sans-serif;
   font-size: 1.2rem;
+  align-items: center;
+}
+
+.start-here p {
+  margin-bottom: 0;
 }
 
 .btn {
