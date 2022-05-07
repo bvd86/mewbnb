@@ -71,6 +71,10 @@ class PokemonsController < ApplicationController
     redirect_to pokemons_path
   end
 
+  def my_pokemons
+    @pokemons = Pokemon.where(user: current_user)
+  end
+
   private
 
   def find_user
