@@ -72,4 +72,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rest-client'
 
-gem 'simple_form_autocomplete'
+# gem 'simple_form_autocomplete'

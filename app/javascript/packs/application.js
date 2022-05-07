@@ -14,5 +14,3 @@ ActiveStorage.start()
 
 import "controllers"
 import "bootstrap"
-
-//= require simple_form_autocomplete
