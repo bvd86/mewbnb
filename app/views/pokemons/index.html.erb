@@ -3,6 +3,16 @@
   <hr>
   <h1 class="available">Available pokemons</h1>
   <hr>
+  
+  <div class="map-container">
+    <div class="map-box"
+      data-controller="mapbox"
+      data-mapbox-markers-value="<%= @markers.to_json %>"
+      data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+  <hr>
+
   <div class="card-container">
     <% @pokemons.each do |p| %>
       <% if p.booking != nil && p.booking.status.capitalize == "Available" %>
