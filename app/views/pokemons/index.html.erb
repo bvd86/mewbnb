@@ -1,10 +1,17 @@
-
 <div class="container">
   <div>
     <%= link_to "➕ Add a pokemon", new_pokemon_path %>
   </div>
   <hr>
   <h1 class="available">Available pokemons</h1>
+  <hr>
+  <div class="map-container">
+    <div style="width: 100%vw; height: 55vw; position: relative;"
+      data-controller="mapbox"
+      data-mapbox-markers-value="<%= @markers.to_json %>"
+      data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
   <hr>
   <div class="card-container">
     <% @pokemons.each do |p| %>

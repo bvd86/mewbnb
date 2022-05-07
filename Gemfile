@@ -34,6 +34,9 @@ gem 'devise'
 # Faker for seeding
 gem 'faker'
 
+# Geocoding gem
+gem "geocoder"
+
 # Front-end gems
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'

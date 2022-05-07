@@ -10,6 +10,15 @@ class PokemonsController < ApplicationController
 
   def index
     @pokemons = Pokemon.all.order(rate: :desc)
+
+    # Map attributes
+    @markers = @pokemons.geocoded.map do |pokemon|
+      {
+        lat: pokemon.latitude,
+        lng: pokemon.longitude,
+        info_window: render_to_string(partial: "shared/info_window", locals: { pokemon: pokemon })
+      }
+    end
   end
 
   def new
@@ -19,7 +28,7 @@ class PokemonsController < ApplicationController
   def create
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.user = @user
-
+    
     # Fetching the pokemon type
     response = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{@pokemon.name.downcase}/"
     poke_info = JSON.parse(response, symbolize_names: true)
@@ -27,7 +36,7 @@ class PokemonsController < ApplicationController
     @pokemon.pokemon_type = poke_type.capitalize
 
     attach_pic
-
+    
     if @pokemon.save!
       redirect_to pokemon_path(@pokemon)
     else
@@ -37,7 +46,16 @@ class PokemonsController < ApplicationController
 
   def show;
     @gym_leader = @pokemon.user
-    @pokemons = Pokemon.all
+    @pokemons = Pokemon.all.where(id: @pokemon.id)
+
+    # Map attributes
+    @markers = @pokemons.geocoded.map do |pokemon|
+      {
+        lat: pokemon.latitude,
+        lng: pokemon.longitude,
+        info_window: render_to_string(partial: "shared/info_window", locals: { pokemon: pokemon })
+      }
+    end
   end
 
   def update
