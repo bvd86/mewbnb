@@ -28,12 +28,16 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-      <ul class="navbar-nav me-auto nav-text">
+      <ul class="navbar-nav me-auto nav-text align-items-center">
         <% if user_signed_in? %>
           <li class="nav-item <%= 'active' if current_page?("#") %>">
 
             <%= link_to "Browse Pokemon", pokemons_path, class: "nav-link" %>
           </li>
+          <li>
+            <%= link_to "➕ Add a pokemon", new_pokemon_path, class: "nav-link" %>
+            </li>
+          <!-- AVATAR MENU -->
           <li class="nav-item dropdown">
             <%= image_tag "pokemon-trainer.png", class: "avatar dropdown-toggle avatar-large avatar-bordered", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
 
