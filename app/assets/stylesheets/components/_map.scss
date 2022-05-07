@@ -1,3 +1,17 @@
+.map-container {
+  display: flex;
+  justify-content: center;
+}
+
+.map-box {
+  width: 35vw;
+  height: 30vh;
+  position: relative;
+  outline: 3px double rgba(243,199,211,0.89);
+  outline-offset: 0px;
+  border-radius: 10px;
+}
+
 .mapboxgl-popup {
   max-width: 200px;
 }
