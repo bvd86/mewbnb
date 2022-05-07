@@ -73,7 +73,6 @@ class PokemonsController < ApplicationController
 
   def my_pokemons
     @pokemons = Pokemon.where(user: current_user)
-    raise
   end
 
   private
