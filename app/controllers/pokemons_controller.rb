@@ -19,6 +19,13 @@ class PokemonsController < ApplicationController
   def create
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.user = @user
+
+    # Fetching the pokemon type
+    response = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{@pokemon.name.downcase}/"
+    poke_info = JSON.parse(response, symbolize_names: true)
+    poke_type = poke_info[:types][0][:type][:name]
+    @pokemon.pokemon_type = poke_type.capitalize
+
     attach_pic
 
     if @pokemon.save!
