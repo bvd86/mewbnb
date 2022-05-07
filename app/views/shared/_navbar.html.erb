@@ -35,7 +35,9 @@
             <%= link_to "Browse Pokemon", pokemons_path, class: "nav-link" %>
           </li>
           <li>
+            <% if Pokemon.all.where(user: @user) != 0 %>
             <%= link_to "➕ Add a pokemon", new_pokemon_path, class: "nav-link" %>
+            <% end %>
             </li>
           <!-- AVATAR MENU -->
           <li class="nav-item dropdown">

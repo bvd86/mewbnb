@@ -1,8 +1,10 @@
 <%= link_to 'All bookings', bookings_path %>
-<% if @booking.status == "Booked" %>
+<% if @booking.status == "Confirmed" %>
   <h1 class="mt-3 mb-3">Your booking has been confirmed!</h1>
-<% else %>
-  <h1 class="mt-3 mb-3">Past Booking</h1>
+<% elsif @booking.status == "Pending" %>
+  <h1 class="mt-3 mb-3">Your Booking is pending confirmation.</h1>
+<% elsif @booking.status == "Cancelled" %>
+  <h1 class="mt-3 mb-3">Your Booking is has been cancelled.</h1>
 <% end %>
 
 <div class="container-confirmation">
@@ -51,6 +53,7 @@
       </tr>
     </table>
   </div>
+
 <%= link_to "Cancel this booking", cancel_booking_path(@booking), method: :patch,
         data: {confirm: 'You are about to cancel you booking for this pokemon, are you sure?'} %>
 </div>
