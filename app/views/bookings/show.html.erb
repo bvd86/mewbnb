@@ -51,5 +51,6 @@
       </tr>
     </table>
   </div>
-
+<%= link_to "Cancel this booking", cancel_booking_path(@booking), method: :patch,
+        data: {confirm: 'You are about to cancel you booking for this pokemon, are you sure?'} %>
 </div>
