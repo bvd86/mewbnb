@@ -1,6 +1,6 @@
-# require 'json'
-# require 'rest-client'
-# require 'open-uri'
+require 'json'
+require 'rest-client'
+require 'open-uri'
 
 class PokemonsController < ApplicationController
   before_action :find_pokemon, only: [:show, :edit, :update, :destroy]
@@ -20,13 +20,13 @@ class PokemonsController < ApplicationController
     @pokemon = Pokemon.new(pokemon_params)
     @pokemon.user = @user
 
-    # Adding picture to pokemon
-    # response = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{@pokemon.name.downcase}/"
-    # poke_info = JSON.parse(response, symbolize_names: true)
-    # pic_url = poke_info[:sprites][:other][:"official-artwork"][:front_default]
-    # filename = File.basename(URI.parse(pic_url).path)
-    # file = URI.open(pic_url)
-    # @pokemon.picture.attach(io: file, filename: filename)
+    # Fetching the pokemon type
+    response = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{@pokemon.name.downcase}/"
+    poke_info = JSON.parse(response, symbolize_names: true)
+    poke_type = poke_info[:types][0][:type][:name]
+    @pokemon.pokemon_type = poke_type.capitalize
+
+    attach_pic
 
     if @pokemon.save!
       redirect_to pokemon_path(@pokemon)
@@ -65,5 +65,17 @@ class PokemonsController < ApplicationController
   def pokemon_params
     params.require(:pokemon).permit(:name, :pokemon_type, :level,
                                    :location, :rate, :description, :picture)
+  end
+
+  def attach_pic
+    response = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{@pokemon.name.downcase}/"
+    poke_info = JSON.parse(response, symbolize_names: true)
+    poke_id = poke_info[:id]
+    @pokemon.pokedex_entry = poke_id
+
+    pic_url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{@pokemon.pokedex_entry}.png"
+    filename = File.basename(URI.parse(pic_url).path)
+    file = URI.open(pic_url)
+    @pokemon.picture.attach(io: file, filename: filename)
   end
 end
