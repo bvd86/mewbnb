@@ -7,7 +7,7 @@ class BookingsController < ApplicationController
 
     @bookings.each do |b|
       if b.end_date + 1 < Time.now
-        b.status = "completed"
+        b.status = "Completed"
         b.save!
       end
 
