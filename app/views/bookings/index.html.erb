@@ -53,3 +53,24 @@
 
   </div>
 <% end %>
+
+<% if @user.is_gym_leader %>
+  <% @bookings.each do |b| %>
+    <% if b.user == @user && b.status == "Pending"%>
+        <div class="col">
+        <%= link_to booking_path(b) do %>
+          <div class="card h-100">
+            <% picture = "https://assets.thesilphroad.com/img/pokemon/icons/96x96/#{b.pokemon.pokedex_entry}.png" %>
+            <%= image_tag picture, alt: b.pokemon.name %>
+            <%#= image_tag b.pokemon.picture, class:"card-img-top", alt:"Photo of #{b.pokemon.name}"%>
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to b.pokemon.name, booking_path(b) %></h5>
+              <p class="card-text">Avaible for pickup on: <%= b.start_date.strftime("%B %d, %Y")  %></p>
+              <p class="card-text">Must return by: <%= b.end_date.strftime("%B %d, %Y")  %></p>
+              <%= link_to "Confirm this booking", confirm_booking_path(b), method: :patch,
+                      data: {confirm: 'You are about to cancel you booking for this pokemon, are you sure?'} %>
+            </div>
+          </div>
+    <% end %>
+  <% end %>
+<% end %>
