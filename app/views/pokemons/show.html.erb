@@ -60,6 +60,14 @@
     <!--li><%#= link_to "Edit this Pokemon", edit_pokemon_path %></li-->
 </div>
 
+<div class="map-container">
+  <div style="width: 100%vw; height: 55vw; position: relative;"
+    data-controller="mapbox"
+    data-mapbox-markers-value="<%= @markers.to_json %>"
+    data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+</div>
+
 <div class="container-explore-box">
   <h2>Explore more pokemons</h2>
 

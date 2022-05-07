@@ -16,7 +16,7 @@ class PokemonsController < ApplicationController
       {
         lat: pokemon.latitude,
         lng: pokemon.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { pokemon: pokemon })
+        info_window: render_to_string(partial: "shared/info_window", locals: { pokemon: pokemon })
       }
     end
   end
@@ -38,7 +38,16 @@ class PokemonsController < ApplicationController
 
   def show;
     @gym_leader = @pokemon.user
-    @pokemons = Pokemon.all
+    @pokemons = Pokemon.all.where(id: @pokemon.id)
+
+    # Map attributes
+    @markers = @pokemons.geocoded.map do |pokemon|
+      {
+        lat: pokemon.latitude,
+        lng: pokemon.longitude,
+        info_window: render_to_string(partial: "shared/info_window", locals: { pokemon: pokemon })
+      }
+    end
   end
 
   def update
