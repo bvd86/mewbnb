@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get '/my_pokemons', to: 'pokemons#my_pokemons'
 
-  resources :bookings, only: [:index, :show, :edit, :update, :destroy]
+  resources :bookings, only: [:index, :show, :edit, :update]
   patch "cancel_booking/:id", to: "bookings#cancel", as: :cancel_booking
   patch "confirm_booking/:id", to: "bookings#confirm", as: :confirm_booking
   patch "rebook_booking/:id", to: "bookings#rebook", as: :rebook_booking

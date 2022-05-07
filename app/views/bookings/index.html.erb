@@ -78,10 +78,9 @@
     <% end %>
   </div>
 <% end %>
-
-<h3>Confirmed bookings</h3>
   <% @bookings.each do |b| %>
     <% if b.status == "Confirmed" %>
+    <h3>Confirmed bookings</h3>
       <div class="col">
           <div class="card h-100">
             <% picture = "https://assets.thesilphroad.com/img/pokemon/icons/96x96/#{b.pokemon.pokedex_entry}.png" %>
@@ -97,9 +96,9 @@
     <% end %>
   <% end %>
 
-  <h3>Cancelled bookings</h3>
   <% if @bookings.each do |b| %>
     <% if b.user == @user && b.status == "Cancelled" %>
+    <h3>Cancelled bookings</h3>
       <div class="col">
           <div class="card h-100">
             <% picture = "https://assets.thesilphroad.com/img/pokemon/icons/96x96/#{b.pokemon.pokedex_entry}.png" %>
@@ -117,10 +116,10 @@
     <% end %>
   <% end %>
 
-<h3>Pending bookings</h3>
-<% if @user.is_gym_leader %>
+<% if Pokemon.all.where(user: @user) != 0 %>
   <% @bookings.each do |b| %>
     <% if b.status == "Pending"%>
+    <h3>Pending bookings</h3>
         <div class="col">
         <%= link_to booking_path(b) do %>
           <div class="card h-100">

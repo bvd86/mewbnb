@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :find_booking, only: [:show, :edit, :update, :cancel, :confirm, :rebook, :destroy]
+  before_action :find_booking, only: [:show, :edit, :update, :cancel, :confirm, :rebook]
   before_action :find_user
 
   def index
@@ -58,13 +58,6 @@ class BookingsController < ApplicationController
 
   def update
     @booking.update(booking_params)
-
-    redirect_to bookings_path
-  end
-
-
-  def destroy
-    @booking.destroy
 
     redirect_to bookings_path
   end

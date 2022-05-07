@@ -19,13 +19,6 @@ if User.count == 0
   })
 end
 
-puts "creating gym leader..."
-user = User.create!({
-  email: "gymlead@mewbnb.com",
-  password: "password321",
-  is_gym_leader: true
-})
-
 if Pokemon.count == 0
   40.times do
     puts "creating pokemon..."
