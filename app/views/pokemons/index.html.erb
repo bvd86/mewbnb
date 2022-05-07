@@ -1,7 +1,9 @@
 
 <div class="container">
   <div>
+    <% if @user.is_gym_leader == true %>
     <%= link_to "➕ Add a pokemon", new_pokemon_path %>
+    <% end %>
   </div>
   <hr>
   <h1 class="available">Available pokemons</h1>

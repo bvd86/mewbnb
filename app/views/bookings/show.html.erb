@@ -1,5 +1,5 @@
 <%= link_to 'Back', bookings_path %>
-<% if @booking.status == "Booked" %>
+<% if @booking.status == "Confirmed" %>
   <h1 class="mt-3 mb-3">Your booking has been confirmed!</h1>
 <% else %>
   <h1 class="mt-3 mb-3">Past Booking</h1>

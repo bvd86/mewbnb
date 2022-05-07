@@ -5,7 +5,7 @@
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
 
   <% @bookings.each do |b| %>
-    <% if b.user == @user && b.status != "Canceled" && b.status != "completed" %>
+    <% if b.user == @user && b.status != "Cancelled" && b.status != "completed" %>
       <div class="col">
         <%= link_to booking_path(b) do %>
           <div class="card h-100">

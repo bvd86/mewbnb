@@ -19,44 +19,53 @@ if User.count == 0
   })
 end
 
-40.times do
-  puts "creating pokemon..."
-  id = rand(1..151)
-  location_id = rand(1..93)
+puts "creating gym leader..."
+user = User.create!({
+  email: "gymlead@mewbnb.com",
+  password: "password321",
+  is_gym_leader: true
+})
 
-  # For name & type
-  response = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{id}/"
-  poke_info = JSON.parse(response, symbolize_names: true)
-  # For description
-  response = RestClient.get "https://pokeapi.co/api/v2/pokemon-species/#{id}/"
-  poke_desc = JSON.parse(response, symbolize_names: true)
-  # For location
-  response = RestClient.get "https://pokeapi.co/api/v2/region/1/"
-  poke_location = JSON.parse(response, symbolize_names: true)
+if Pokemon.count == 0
+  40.times do
+    puts "creating pokemon..."
+    id = rand(1..151)
+    location_id = rand(1..93)
 
-  pokemon = Pokemon.create!({
-    name: poke_info[:forms][0][:name].titleize,
-    pokedex_entry: id,
-    rate: rand(50..500),
-    description: poke_desc[:flavor_text_entries][0][:flavor_text],
-    location: poke_location[:locations][location_id][:name].titleize.tr("-", ""),
-    user: User.first,
-    pokemon_type: poke_info[:types][0][:type][:name].capitalize,
-    level: rand(1..100),
-  })
+    # For name & type
+    response = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{id}/"
+    poke_info = JSON.parse(response, symbolize_names: true)
+    # For description
+    response = RestClient.get "https://pokeapi.co/api/v2/pokemon-species/#{id}/"
+    poke_desc = JSON.parse(response, symbolize_names: true)
+    # For location
+    response = RestClient.get "https://pokeapi.co/api/v2/region/1/"
+    poke_location = JSON.parse(response, symbolize_names: true)
 
-  pic_url = poke_info[:sprites][:other][:"official-artwork"][:front_default]
+    pokemon = Pokemon.create!({
+      name: poke_info[:forms][0][:name].titleize,
+      pokedex_entry: id,
+      rate: rand(50..500),
+      description: poke_desc[:flavor_text_entries][0][:flavor_text],
+      location: poke_location[:locations][location_id][:name].titleize.tr("-", ""),
+      user: User.first,
+      pokemon_type: poke_info[:types][0][:type][:name].capitalize,
+      level: rand(1..100),
+    })
 
-  filename = File.basename(URI.parse(pic_url).path)
-  file = URI.open(pic_url)
+    pic_url = poke_info[:sprites][:other][:"official-artwork"][:front_default]
 
-  pokemon.picture.attach(io: file, filename: filename)
+    filename = File.basename(URI.parse(pic_url).path)
+    file = URI.open(pic_url)
 
-  puts "creating booking..."
-  Booking.create!({
-    pokemon: pokemon,
-    status: ["Available", "Booked", "Canceled"].sample,
-    start_date: Faker::Date.between(from: 10.days.ago, to: Date.today),
-    end_date: Faker::Date.between(from: Date.today, to: 30.days.from_now)
-  })
+    pokemon.picture.attach(io: file, filename: filename)
+
+    puts "creating booking..."
+    Booking.create!({
+      pokemon: pokemon,
+      status: ["Available", "Confirmed", "Cancelled", "Pending"].sample,
+      start_date: Faker::Date.between(from: 10.days.ago, to: Date.today),
+      end_date: Faker::Date.between(from: Date.today, to: 30.days.from_now)
+    })
+  end
 end
