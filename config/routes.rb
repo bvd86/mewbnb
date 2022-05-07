@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :bookings, only: [:index, :show, :edit, :update]
   patch "cancel_booking/:id", to: "bookings#cancel", as: :cancel_booking
+  patch "confirm_booking/:id", to: "bookings#confirm", as: :confirm_booking
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

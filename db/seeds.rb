@@ -47,7 +47,7 @@ if Pokemon.count == 0
       pokedex_entry: id,
       rate: rand(50..500),
       description: poke_desc[:flavor_text_entries][0][:flavor_text],
-      location: poke_location[:locations][location_id][:name].titleize.tr("-", ""),
+      location: Faker::Address.city,
       user: User.first,
       pokemon_type: poke_info[:types][0][:type][:name].capitalize,
       level: rand(1..100),

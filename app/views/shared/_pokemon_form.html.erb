@@ -1,4 +1,3 @@
-<% types = ["Normal", "Fire", "Water", "Grass", "Electric", "Ice", "Fighting", "Poison", "Psychic", "Ground", "Flying", "Bug", "Rock", "Ghost", "Dark", "Dragon", "Steel", "Fairy"] %>
 <% names = %w[Bulbasaur
               Ivysaur
               Venusaur
@@ -153,8 +152,7 @@
 
 <div class="poke-booking-form">
   <%= simple_form_for @pokemon do |f| %>
-        <%= f.input :name, collection: names %>
-        <%= f.input :pokemon_type, collection: types %>
+        <%= f.input :name, collection: names.sort %>
         <%= f.input :location %>
         <%= f.input :level, collection: 1..100 %>
         <%= f.input :rate, as: :numeric %>
