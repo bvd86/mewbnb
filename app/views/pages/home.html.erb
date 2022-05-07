@@ -1,19 +1,23 @@
 <% content_for :content do %>
-  <div class="parent">
-      <%= image_tag 'Pokemon_space.jpg', alt: 'background', class:"background" %>
-    <div class="main_logo">
-      <%= image_tag 'Pokemon_logo.png', alt: 'pokemon_logo', class:"pokemon_logo" %>
-      <%= image_tag 'mew.png', alt: 'mew', class:"mew" %>
-      <%= link_to pokemons_path do %>
-        <button class="btn btn-grad" id="start-now">Start Now</button>
-      <% end %>
+  <div class="container-landing">
+    <div class="left">
+      <div class="hero-content">
+        <h2 id="mew-title">Gotta Rent Em All! <br>
+        MewBnB</h2>
+        <p id="mew-text">Learn to be a better trainer<br>
+        or rent your high level pokemon to<br>
+        new trainers for some Pokedollars</p>
+          <div class="start-here">
+            <button class="btn btn-grad">Browse Pokemons</button>
+            <p>Find the perfect pokemon<br>
+            to continue your journey</p>
+          </div>
+      </div>
     </div>
-
-
-
-    <div class="trainer-container">
-        <%= image_tag 'male_trainer.png', alt: 'male_trainer', class:"male_trainer" %>
-        <%= image_tag 'female_trainer.png', alt: 'female_trainer', class:"female_trainer" %>
+    <div class="right">
+      <div class="mew-animation">
+        <%= image_tag "mew_2.gif", alt:"Mew Animation" %>
+      </div>
     </div>
   </div>
 <% end %>
