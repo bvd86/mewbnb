@@ -1,8 +1,8 @@
 
-<% if @my_pokemons.nil? %>
+<% if @pokemons.nil? %>
   <p>You do not have any pokemons</p>
 <% else %>
-  <% @my_pokemons.each do |p| %>
+  <% @pokemons.each do |p| %>
 
     <%= p.name %>
   <% end %>
