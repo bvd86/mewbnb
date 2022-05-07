@@ -43,14 +43,15 @@
   border: 1px solid lightgray;
   border-radius: 32px;
   box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
-  width: 70vw;
   margin: 0 auto;
+  height:600px;
+  margin-bottom: 30px;
 }
 
 .pokemon-details-right {
   margin-left: 20px;
   margin-right: 20px;
-
+  width: 48vw;
   h4 {
     color: $st-patricks-blue;
   }
@@ -64,6 +65,7 @@
 
 .pokemon-details-left {
   align-self: center;
+  width: 48vw;
 }
 
 .pokemon-header {
