@@ -2,3 +2,8 @@
 @import "home";
 @import "show";
 @import "bookings";
+
+.available {
+  display: flex;
+  justify-content: center;
+}
