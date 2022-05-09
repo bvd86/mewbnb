@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   patch "cancel_booking/:id", to: "bookings#cancel", as: :cancel_booking
   patch "confirm_booking/:id", to: "bookings#confirm", as: :confirm_booking
   patch "rebook_booking/:id", to: "bookings#rebook", as: :rebook_booking
+  patch "decline_booking/:id", to: "bookings#decline", as: :decline_booking
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,28 +1,40 @@
-
 <% if @pokemons.nil? %>
   <p>You do not have any pokemons</p>
 <% else %>
 
-<h2>Available pokemons</h2>
+<h2>Your Pokemons</h2>
 
-  <div class="row row-cols-1 row-cols-md-3 g-4">
 
-    <% @pokemons.each do |p| %>
-      <% if p.booking.nil? || p.booking.status == "Available" || p.booking.status == "Pending" %>
-        <div class="col">
-          <div class="card">
-            <%= image_tag p.picture, class: "card-img-top" %>
-            <div class="card-body">
-              <h5 class="card-title"><%= link_to p.name, pokemon_path(p) %></h5>
-              <p class="card-text">
-              </p>
-            </div>
-          </div>
+
+  <% @pokemons.each do |p| %>
+
+    <div class="card-product mb-3">
+      <%= image_tag p.picture, class: "avatar" %>
+      <div class="card-product-infos">
+        <h2>
+          <%= link_to p.name, pokemon_path(p) %>
+          <% p.bookings.where(status: "Confirmed").each do |b| %>
+            <% if Date.today.between?(b.start_date, b.end_date) %>
+              <p>Currently on a quest with a trainer</p>
+            <% end %>
+          <% end %>
+        </h2>
+
+        <div class="d-flex gap-2">
+          <p class="pe-2 border-end"><%= p.bookings.where(status: "Pending").count %> Pending Requests</p>
+          <p class="pe-2 border-end"><%= p.bookings.where(status: "Confirmed").count %> Confirmed Bookings</p>
+          <p><%= p.bookings.where(status: "Completed").count %> Completed Bookings</p>
         </div>
-      <% end %>
-    <% end %>
-  </div>
 
+      </div>
+    </div>
+  <% end %>
 
 
 <% end %>
+
+
+<!--
+
+Unlisted pokemons
+-->

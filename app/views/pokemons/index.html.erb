@@ -15,7 +15,10 @@
 
   <div class="card-container">
     <% @pokemons.each do |p| %>
-      <% if p.booking != nil && p.booking.status.capitalize == "Available" || p.booking.nil? %>
+      <!-- TO SHOW NEW POKEMONS -->
+      <% if p.bookings.empty? %>
+
+
         <div class="card" data-text="<%= p.name %>" style="--bubble-color: rgb(<%= rand(255) %>, <%= rand(255) %>, <%= rand(255) %>); --text-color: rgb(<%= rand(255) %>, <%= rand(255) %>, <%= rand(255) %>) ">
           <div class="imgBox">
             <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{p.pokedex_entry}.png" %>
@@ -24,7 +27,7 @@
           <div class="contentBox">
             <h2><%= link_to p.name, pokemon_path(p) %></h2>
             <div class="type">
-              <h3>Type:</h3>
+              <h3>Type :</h3>
               <span><%= p.pokemon_type %></span>
             </div>
             <div class="level">
@@ -33,6 +36,33 @@
             <%= link_to "Book now", new_pokemon_booking_path(p), class: "btn-primary" %>
           </div>
         </div>
+
+      <% end %>
+
+      <!-- SHOW EXISTING POKEMONS -->
+      <% p.bookings.select do |b|%>
+        <% if p.bookings != nil && b.status.capitalize == "Available" ||
+              p.bookings != nil && b.status.capitalize == "Pending"  %>
+
+
+          <div class="card" data-text="<%= p.name %>" style="--bubble-color: rgb(<%= rand(255) %>, <%= rand(255) %>, <%= rand(255) %>); --text-color: rgb(<%= rand(255) %>, <%= rand(255) %>, <%= rand(255) %>) ">
+            <div class="imgBox">
+              <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{p.pokedex_entry}.png" %>
+              <%= image_tag picture, alt: p.name, class:"ivysaur" %>
+            </div>
+            <div class="contentBox">
+              <h2><%= link_to p.name, pokemon_path(p) %></h2>
+              <div class="type">
+                <h3>Type :</h3>
+                <span><%= p.pokemon_type %></span>
+              </div>
+              <div class="level">
+                <h5>Level: <%= p.level %> - Rate: $<%= p.rate %>/day</h5>
+              </div>
+              <%= link_to "Book now", new_pokemon_booking_path(p), class: "btn-primary" %>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>

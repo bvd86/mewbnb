@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :find_booking, only: [:show, :edit, :update, :cancel, :confirm, :rebook]
+  before_action :find_booking, only: [:show, :edit, :update, :cancel, :confirm, :rebook, :decline]
   before_action :find_user
 
   def index
@@ -60,6 +60,13 @@ class BookingsController < ApplicationController
     @booking.update(booking_params)
 
     redirect_to bookings_path
+  end
+
+  def decline
+    @booking.status = "Decline"
+    @booking.save!
+
+    redirect_to my_listings_path
   end
 
   private

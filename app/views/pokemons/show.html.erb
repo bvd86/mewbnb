@@ -71,24 +71,24 @@
 <div class="container-explore-box">
   <h2>Explore more pokemons</h2>
 
-  <div class="pokemon-explore">
+  <div class="pokemon-explore row row-cols-1 row-cols-md-2 g-4">
 
     <% @pokemons.sample(3).each do |p| %>
-     <div class="pokemon-explore-card">
-      <%= link_to pokemon_path(p) do %>
-        <div class="col">
-          <div class="card" style="width: 240px;">
-            <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{p.pokedex_entry}.png" %>
-            <%= image_tag picture, class:"card-img-top", alt: p.name %>
-            <div><p class="text-center">Level: <%= p.level %></p></div>
-            <div class="card-body d-flex justify-content-between border-top">
-              <h5 class="card-title"><%= p.name  %></h5>
-              <p class="card-text"> $<%= p.rate %>/day</p>
+      <div class="pokemon-explore-card">
+        <%= link_to pokemon_path(p) do %>
+          <div class="col">
+            <div class="card">
+              <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{p.pokedex_entry}.png" %>
+              <%= image_tag picture, class:"card-img-top", alt: p.name %>
+              <div><p class="text-center">Level: <%= p.level %></p></div>
+              <div class="card-body d-flex justify-content-between border-top">
+                <h5 class="card-title"><%= p.name  %></h5>
+                <p class="card-text"> $<%= p.rate %>/day</p>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
-     </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>
