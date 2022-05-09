@@ -3,63 +3,21 @@
     <i class="fa-solid fa-reply"></i>
     <% end %>
 </div>
-<div class="container-pokemon-box">
 
-    <div class="pokemon-header">
-      <div class="d-flex align-items-end">
-        <h1 id="pokemon-name"><%= @pokemon.name %></h1>
-        <p>Level: <%= @pokemon.level %></p>
-      </div>
+<!-- POKEMON CARD -->
+<% if @pokemon.user != @user %>
 
-      <div id="pokemon-location" class="d-flex">
-        <%= image_tag "location.png" %>
-        <p><%= @pokemon.location %></p>
-      </div>
-    </div>
+  <%= render 'shared/show_trainer' %>
 
-      <div class="pokemon-details d-flex">
-        <!-- POKEMON PICTURE AND RATE -->
-        <div class="pokemon-details-left">
-          <div class="pokemon-img">
-            <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{@pokemon.pokedex_entry}.png" %>
-            <%= image_tag @pokemon.picture, alt: @pokemon.name %>
-          </div>
+<% elsif @pokemon.user == @user %>
 
-        <div class="pokemon-rate-box d-flex justify-content-end align-items-center">
-          <p class="pokemon-rate">$<%= @pokemon.rate %></p>
-          <p>/day</p>
-        </div>
+  <%= render 'shared/show_gym_leader' %>
+
+<% end %>
 
 
-      </div>
 
-      <div class="pokemon-details-right">
-        <!-- GYM LEADER INFO-->
-        <div class="pokemon-gym-leader d-flex justify-content-end align-items-center mt-2 border-bottom">
-          <p><%= @gym_leader.email.split("@").first %></p>
-          <div>
-            <%= image_tag "pokemon-trainer.png", alt:"#{@gym_leader}'s picture", class:"avatar avatar-large" %>
-          </div>
-        </div>
-
-        <!-- POKEMON DESCRIPTION -->
-        <div class="pokemon-details-lower-right">
-          <div class="mt-3">
-            <h4>Description</h4>
-            <p><%= @pokemon.description %></p>
-          </div>
-          <p><b>Type</b>: <%= @pokemon.pokemon_type %></p>
-          <br>
-          <%= render "shared/booking_form" %>
-        </div>
-      </div>
-
-
-    </div>
-
-    <!--li><%#= link_to "Edit this Pokemon", edit_pokemon_path %></li-->
-</div>
-
+<!-- MAP -->
 <div class="map-container">
   <div class="map-box"
     data-controller="mapbox"
@@ -68,27 +26,29 @@
   </div>
 </div>
 
+<!-- EXPLORE MORE POKEMONS -->
+
 <div class="container-explore-box">
-  <h2>Explore more pokemons</h2>
+  <h2 >Explore more pokemons</h2>
 
-  <div class="pokemon-explore">
+  <div class="pokemon-explore row row-cols-1 row-cols-md-3 g-4 mt-2">
 
-    <% @pokemons.sample(3).each do |p| %>
-     <div class="pokemon-explore-card">
-      <%= link_to pokemon_path(p) do %>
-        <div class="col">
-          <div class="card" style="width: 240px;">
-            <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{p.pokedex_entry}.png" %>
-            <%= image_tag picture, class:"card-img-top", alt: p.name %>
-            <div><p class="text-center">Level: <%= p.level %></p></div>
-            <div class="card-body d-flex justify-content-between border-top">
-              <h5 class="card-title"><%= p.name  %></h5>
-              <p class="card-text"> $<%= p.rate %>/day</p>
+    <% @pokemons.reject { |p| p == @pokemon }.sample(3).each do |p| %>
+      <div class="pokemon-explore-card">
+        <%= link_to pokemon_path(p) do %>
+          <div class="col">
+            <div class="card">
+              <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{p.pokedex_entry}.png" %>
+              <%= image_tag picture, class:"card-img-top", alt: p.name %>
+              <div><p class="text-center">Level: <%= p.level %></p></div>
+              <div class="card-body d-flex justify-content-between border-top">
+                <h5 class="card-title"><%= p.name  %></h5>
+                <p class="card-text"> $<%= p.rate %>/day</p>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
-     </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

@@ -1,0 +1,40 @@
+<% if @pokemons.nil? %>
+  <p>You do not have any pokemons</p>
+<% else %>
+
+<h2>Your Pokemons</h2>
+
+
+
+  <% @pokemons.each do |p| %>
+
+    <div class="card-product mb-3">
+      <%= image_tag p.picture, class: "avatar" %>
+      <div class="card-product-infos">
+        <h2>
+          <%= link_to p.name, pokemon_path(p) %>
+          <% p.bookings.where(status: "Confirmed").each do |b| %>
+            <% if Date.today.between?(b.start_date, b.end_date) %>
+              <p>Currently on a quest with a trainer</p>
+            <% end %>
+          <% end %>
+        </h2>
+
+        <div class="d-flex gap-2">
+          <p class="pe-2 border-end"><%= p.bookings.where(status: "Pending").count %> Pending Requests</p>
+          <p class="pe-2 border-end"><%= p.bookings.where(status: "Confirmed").count %> Confirmed Bookings</p>
+          <p><%= p.bookings.where(status: "Completed").count %> Completed Bookings</p>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+
+
+<% end %>
+
+
+<!--
+
+Unlisted pokemons
+-->

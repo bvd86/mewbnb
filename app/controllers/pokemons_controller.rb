@@ -52,7 +52,7 @@ class PokemonsController < ApplicationController
 
   def show;
     @gym_leader = @pokemon.user
-    @pokemons = Pokemon.all.where(id: @pokemon.id)
+    @pokemons = Pokemon.all
     @booking = Booking.new
 
     # Map attributes
@@ -77,9 +77,11 @@ class PokemonsController < ApplicationController
     redirect_to pokemons_path
   end
 
-  def my_pokemons
+  def my_listings
     @pokemons = Pokemon.where(user: current_user)
   end
+
+
 
   private
 

@@ -1,0 +1,148 @@
+<div class="container-pokemon-box">
+
+    <div class="pokemon-header">
+      <div class="d-flex align-items-end">
+        <h1 id="pokemon-name"><%= @pokemon.name %></h1>
+        <p>Level: <%= @pokemon.level %></p>
+      </div>
+
+      <div id="pokemon-location" class="d-flex">
+        <%= image_tag "location.png" %>
+        <p><%= @pokemon.location %></p>
+      </div>
+    </div>
+
+      <div class="pokemon-details d-flex">
+        <!-- POKEMON PICTURE AND RATE -->
+        <div class="pokemon-details-left">
+          <div class="pokemon-img">
+            <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{@pokemon.pokedex_entry}.png" %>
+            <%= image_tag @pokemon.picture, alt: @pokemon.name %>
+          </div>
+
+        <div class="pokemon-rate-box d-flex justify-content-end align-items-center">
+          <p class="pokemon-rate">$<%= @pokemon.rate %></p>
+          <p>/day</p>
+        </div>
+
+
+      </div>
+
+      <div class="pokemon-details-right">
+        <!-- GYM LEADER INFO-->
+        <div class="pokemon-gym-leader d-flex justify-content-end align-items-center mt-2 border-bottom">
+          <p><%= link_to "Edit this Pokemon", edit_pokemon_path %></p>
+          <div>
+            <%= image_tag "pokemon-trainer.png", alt:"#{@gym_leader}'s picture", class:"avatar avatar-large" %>
+          </div>
+        </div>
+
+        <!-- POKEMON DESCRIPTION -->
+        <div class="pokemon-details-lower-right">
+          <div class="mt-3">
+            <h4>Description</h4>
+            <p><%= @pokemon.description %></p>
+          </div>
+          <p><b>Type</b>: <%= @pokemon.pokemon_type %></p>
+          <br>
+          <% if @pokemon.bookings.empty? %>
+            <p><%= @pokemon.name %> has no booking requests</p>
+          <% else %>
+
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Ongoing</button>
+              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Pending</button>
+              <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Confirmed</button>
+              <button class="nav-link" id="nav-past-tab" data-bs-toggle="tab" data-bs-target="#nav-past" type="button" role="tab" aria-controls="nav-past" aria-selected="false">History</button>
+            </div>
+          </nav>
+
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <!-- CURRENTLY BOOKED -->
+              <% if @pokemon.bookings.any? { |b| b.status == "Confirmed" && Date.today.between?(b.start_date, b.end_date) } %>
+                <h5 class="mt-3">On-Going Quest</h5>
+                <% @pokemon.bookings.each do |b| %>
+                  <% if b.status == "Confirmed" && Date.today.between?(b.start_date, b.end_date) %>
+                    <div class=" d-flex justify-content-between align-items-center">
+                      <p class="mb-0"><%= @pokemon.name %> is currently training with <b><%= b.user.email.split("@").first.capitalize %></b>
+                          from <b><%= b.start_date.strftime("%B %d, %Y") %></b> to <b><%= b.end_date.strftime("%B %d, %Y") %></b>.</p>
+                      <%= link_to "Details", booking_path(b), class: "btn btn-sm btn-outline-primary" %>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <p class="text-center mt-3"><%= @pokemon.name %> does not have any ongoing quests</p>
+              <% end %>
+            </div>
+
+
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <!-- REQUESTS PENDING APPROVAL -->
+              <% if @pokemon.bookings.any? { |b| b.status == "Pending"} %>
+                <h5 class="mt-3">Pending Requests</h5>
+                <% @pokemon.bookings.each do |b| %>
+                  <% if b.status == "Pending" %>
+                    <div class="d-flex justify-content-between align-items-center border-bottom">
+                      <p class="mb-0">From: <%= b.user.email.split("@").first.capitalize  %> for
+                      <%= b.start_date.strftime("%B %d, %Y")  %> - <%= b.end_date.strftime("%B %d, %Y")  %></p>
+                      <div class="d-flex">
+                        <%= link_to "Details", booking_path(b), class: "btn btn-sm btn-outline-primary" %>
+                        <%= link_to "Accept", confirm_booking_path(b), method: :patch,
+                            data: {confirm: 'You are about to confirm the booking for this pokemon, are you sure?'},
+                            class: "btn btn-sm btn-outline-success" %>
+                        <%= link_to "Decline", decline_booking_path(b), method: :patch,
+                            data: {confirm: 'You are about to decline this booking request, are you sure?'},
+                            class: "btn btn-sm btn-outline-warning" %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <p class="text-center mt-3"><%= @pokemon.name %> does not have any pending requests.</p>
+              <% end %>
+            </div>
+
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <!-- FUTURE BOOKINGS CONFIRMED -->
+                <% if @pokemon.bookings.any? { |b| b.status == "Confirmed" && Date.today.between?(b.start_date, b.end_date) == false } %>
+                  <h5 class="mt-3">Confirmed Bookings</h5>
+                  <% @pokemon.bookings.each do |b| %>
+                    <% if b.status == "Confirmed" && Date.today.between?(b.start_date, b.end_date) == false %>
+                      <div class="border-bottom d-flex justify-content-between align-items-center">
+                        <p class="mt-2 mb-0"><b><%= b.user.email.split("@").first.capitalize  %></b> has booked <%= @pokemon.name %>
+                        for <b><%= b.start_date.strftime("%B %d, %Y") %></b> to <b><%= b.end_date.strftime("%B %d, %Y") %></b>.</p>
+                        <%= link_to "Details", booking_path(b), class: "btn btn-sm btn-outline-primary" %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                <% else %>
+                  <p class="text-center mt-3"><%= @pokemon.name %> does not have any future bookings confirmed.</p>
+                <% end %>
+            </div>
+
+            <div class="tab-pane fade" id="nav-past" role="tabpanel" aria-labelledby="nav-past-tab">
+                        <!-- PAST BOOKINGS -->
+              <% if @pokemon.bookings.any? { |b| b.status == "Completed"} %>
+                <h5 class="mt-3">Completed Bookings</h5>
+                <% @pokemon.bookings.each do |b| %>
+                  <% if b.status == "Completed" %>
+
+                    <div class="border-bottom d-flex justify-content-between align-items-center">
+                      <p class="mt-2 mb-0"><%= @pokemon.name %> trained with <b><%= b.user.email.split("@").first.capitalize  %></b>
+                      on <b><%= b.start_date.strftime("%B %d, %Y") %></b> to <b><%= b.end_date.strftime("%B %d, %Y") %></b>.</p>
+                      <%= link_to "Details", booking_path(b), class: "btn btn-sm btn-outline-primary" %>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <p class="text-center mt-3"><%= @pokemon.name %> does not been on any quests.</p>
+              <% end %>
+            </div>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+</div>

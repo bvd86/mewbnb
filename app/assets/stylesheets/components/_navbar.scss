@@ -126,3 +126,11 @@ display: block;
   display: flex;
   justify-content: center;
 }
+
+.tab-pane {
+  background-color: transparent;
+
+  .active {
+    background-color: transparent;
+  }
+}
