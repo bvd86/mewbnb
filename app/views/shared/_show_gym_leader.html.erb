@@ -72,9 +72,10 @@
                     <p class="mb-0">From: <%= b.user.email.split("@").first.capitalize  %> for
                     <%= b.start_date.strftime("%B %d, %Y")  %> - <%= b.end_date.strftime("%B %d, %Y")  %></p>
                     <div class="d-flex">
+                      <%= link_to "Details", booking_path(b), class: "btn btn-sm btn-outline-primary" %>
                       <%= link_to "Accept", confirm_booking_path(b), method: :patch,
                           data: {confirm: 'You are about to confirm the booking for this pokemon, are you sure?'},
-                          class: "btn btn-sm btn-outline-primary" %>
+                          class: "btn btn-sm btn-outline-success" %>
                       <%= link_to "Decline", decline_booking_path(b), method: :patch,
                           data: {confirm: 'You are about to decline this booking request, are you sure?'},
                           class: "btn btn-sm btn-outline-warning" %>
