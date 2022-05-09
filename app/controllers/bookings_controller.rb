@@ -46,7 +46,7 @@ class BookingsController < ApplicationController
     @booking.status = "Confirmed"
     @booking.save!
 
-    redirect_to bookings_path
+    redirect_to pokemon_path(@booking.pokemon)
   end
 
   def rebook
@@ -66,7 +66,7 @@ class BookingsController < ApplicationController
     @booking.status = "Decline"
     @booking.save!
 
-    redirect_to my_listings_path
+    redirect_to pokemon_path(@booking.pokemon)
   end
 
   private

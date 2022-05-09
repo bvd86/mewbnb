@@ -1,0 +1,54 @@
+<div class="container-pokemon-box">
+
+    <div class="pokemon-header">
+      <div class="d-flex align-items-end">
+        <h1 id="pokemon-name"><%= @pokemon.name %></h1>
+        <p>Level: <%= @pokemon.level %></p>
+      </div>
+
+      <div id="pokemon-location" class="d-flex">
+        <%= image_tag "location.png" %>
+        <p><%= @pokemon.location %></p>
+      </div>
+    </div>
+
+      <div class="pokemon-details d-flex">
+        <!-- POKEMON PICTURE AND RATE -->
+        <div class="pokemon-details-left">
+          <div class="pokemon-img">
+            <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{@pokemon.pokedex_entry}.png" %>
+            <%= image_tag @pokemon.picture, alt: @pokemon.name %>
+          </div>
+
+        <div class="pokemon-rate-box d-flex justify-content-end align-items-center">
+          <p class="pokemon-rate">$<%= @pokemon.rate %></p>
+          <p>/day</p>
+        </div>
+
+
+      </div>
+
+      <div class="pokemon-details-right">
+        <!-- GYM LEADER INFO-->
+        <div class="pokemon-gym-leader d-flex justify-content-end align-items-center mt-2 border-bottom">
+          <p><%= @gym_leader.email.split("@").first %></p>
+          <div>
+            <%= image_tag "pokemon-trainer.png", alt:"#{@gym_leader}'s picture", class:"avatar avatar-large" %>
+          </div>
+        </div>
+
+        <!-- POKEMON DESCRIPTION -->
+        <div class="pokemon-details-lower-right">
+          <div class="mt-3">
+            <h4>Description</h4>
+            <p><%= @pokemon.description %></p>
+          </div>
+          <p><b>Type</b>: <%= @pokemon.pokemon_type %></p>
+          <br>
+          <%= render "shared/booking_form" %>
+        </div>
+      </div>
+
+
+    </div>
+</div>

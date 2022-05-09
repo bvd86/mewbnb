@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create]
   end
 
-  get '/my_listings', to: 'pokemons#my_pokemons'
+  get '/my_listings', to: 'pokemons#my_listings'
 
   resources :bookings, only: [:index, :show, :edit, :update]
   patch "cancel_booking/:id", to: "bookings#cancel", as: :cancel_booking

@@ -77,7 +77,7 @@ class PokemonsController < ApplicationController
     redirect_to pokemons_path
   end
 
-  def my_pokemons
+  def my_listings
     @pokemons = Pokemon.where(user: current_user)
   end
 
