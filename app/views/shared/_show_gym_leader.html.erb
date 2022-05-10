@@ -28,10 +28,11 @@
 
       <div class="pokemon-details-right">
         <!-- GYM LEADER INFO-->
-        <div class="pokemon-gym-leader d-flex justify-content-end align-items-center mt-2 border-bottom">
+        <div class="pokemon-gym-leader d-flex justify-content-end align-items-center mt-2 border-bottom gap-2">
           <h2><%= link_to "🗑️", pokemon_path(@pokemon), method: :delete,
-                 data: {confirm: 'You are about to remove this pokemon from our database, are you sure?'} %></h2>
-          <h2><%= link_to "📝", edit_pokemon_path %></h2>
+                 data: {confirm: 'You are about to remove this pokemon from our database, are you sure?'},
+                 title: "Delete" %></h2>
+          <h2><%= link_to "📝", edit_pokemon_path, title: "Edit" %></h2>
           <div>
             <%= image_tag "pokemon-trainer.png", alt:"#{@gym_leader}'s picture", class:"avatar avatar-large" %>
           </div>
