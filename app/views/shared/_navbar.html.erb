@@ -14,16 +14,19 @@
       </ul>
     </div>
 
-    <div>
-      <%= form_tag pokemons_path, method: :get do %>
+    <%= form_tag pokemons_path, method: :get do %>
+    <div class="home-search">
       <%= text_field_tag :query,
       params[:query],
-      class: "form-control",
+      class: "home-input",
       placeholder: "Find a Pokémon"
       %>
-      <%= submit_tag "Search", class: "btn btn-primary" %>
-      <% end %>
+       <%= button_tag type:'submit', class: "btn-hide" do %>
+        <i class="fa fa-search"></i>
+       <% end %>
     </div>
+  <% end %>
+
       <!--
       <form action="" class="home-search">
         <input type="search" class="home-input" required>
