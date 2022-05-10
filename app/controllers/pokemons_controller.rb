@@ -9,7 +9,6 @@ class PokemonsController < ApplicationController
   def edit; end
 
   def index
-
     # Search
     if params[:query].present?
       @pokemons = Pokemon.search_pokemon(params[:query])
