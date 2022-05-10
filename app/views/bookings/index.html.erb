@@ -1,128 +1,160 @@
 <h1 class="mb-2">My bookings</h1>
 
-<!-- CURRENT BOOKINGS -->
 
-<% @bookings.each do |b| %>
-  <% if b.user == @user && b.status != "Cancelled" && b.status != "Confirmed" %>
+<nav>
+  <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-current-tab" data-bs-toggle="tab" data-bs-target="#nav-current" type="button" role="tab" aria-controls="nav-current" aria-selected="true">Current</button>
+    <button class="nav-link" id="nav-pending-tab" data-bs-toggle="tab" data-bs-target="#nav-pending" type="button" role="tab" aria-controls="nav-pending" aria-selected="false">Pending</button>
+    <button class="nav-link" id="nav-future-tab" data-bs-toggle="tab" data-bs-target="#nav-future" type="button" role="tab" aria-controls="nav-future" aria-selected="false">Upcoming</button>
+    <button class="nav-link" id="nav-past-tab" data-bs-toggle="tab" data-bs-target="#nav-past" type="button" role="tab" aria-controls="nav-past" aria-selected="false">Past</button>
+  </div>
+</nav>
 
-    <div class="card-product mb-3 border me-2 justify-content-between">
-      <div class="d-flex">
-        <%= image_tag b.pokemon.picture, alt: b.pokemon.name, class: "avatar" %>
-        <div class="card-product-infos">
-          <h2><%= b.pokemon.name %></h2>
-          <div class="d-flex mt-2">
-            <!-- Booking status -->
-            <% if b.status == "Confirmed" %>
-              <div class="d-flex gap-1 padding-x">
-                <p style="color: green;"><i class="fa-solid fa-circle-check"></i></p>
-                <p><%= b.status %>!</p>
+
+<div class="tab-content" id="nav-tabContent">
+
+  <!-- CURRENT BOOKINGS -->
+  <div class="tab-pane fade show active" id="nav-current" role="tabpanel" aria-labelledby="nav-current-tab">
+      <% @bookings.each do |b| %>
+        <% if b.user == @user && b.status == "Confirmed" && Date.today.between?(b.start_date, b.end_date) %>
+
+          <div class="card-product mb-3 border me-2 justify-content-between">
+            <div class="d-flex">
+              <%= image_tag b.pokemon.picture, alt: b.pokemon.name, class: "avatar" %>
+              <div class="card-product-infos">
+                <h2><%= b.pokemon.name %></h2>
+                <div class="d-flex mt-2">
+                  <!-- Booking status -->
+                  <div class="d-flex gap-1 padding-x">
+                    <p style="color: #2572BDff;"><i class="fa-solid fa-circle-dot"></i></p>
+                    <p>Ongoing</p>
+                  </div>
+
+                  <!-- Booking dates -->
+                  <p class="padding-x border-start"><%= b.start_date.strftime("%B %d, %Y")  %> - <%= b.end_date.strftime("%B %d, %Y")  %></p>
+                  <!-- Pokemon location -->
+                  <p class="padding-x border-start">Location: <%= b.pokemon.location %></p>
+                </div>
               </div>
-            <% else %>
-              <div class="d-flex gap-1 padding-x">
-                <p style="color: orange;"><i class="fa-solid fa-clock"></i></p>
-                <p><%= b.status %></p>
-              </div>
-            <% end %>
+            </div>
 
-            <!-- Booking dates -->
-            <p class="padding-x border-start"><%= b.start_date.strftime("%B %d, %Y")  %> - <%= b.end_date.strftime("%B %d, %Y")  %></p>
-            <!-- Pokemon location -->
-            <p class="padding-x border-start">Location: <%= b.pokemon.location %></p>
+            <div class="d-grid btn-booking-index">
+              <%= link_to "Details", booking_path(b), class:"btn btn-sm btn-primary m-0" %>
+            </div>
+
           </div>
-        </div>
-      </div>
+        <% end %>
+      <% end %>
+  </div>
 
-      <div class="d-grid btn-booking-index">
-        <%= link_to "Details", booking_path(b), class:"btn btn-sm btn-primary mb-0" %>
-        <%= link_to "Cancel", cancel_booking_path(b), method: :patch,
-                  data: {confirm: 'You are about to cancel your booking for this pokemon, are you sure?'},
-                  class: "btn btn-sm btn-outline-warning" %>
-      </div>
-
-    </div>
-  <% end %>
-<% end %>
-
-<!-- PAST BOOKINGS -->
-
-<% if @bookings.where(user: @user, status: "Confirmed").any? %>
-  <h3 class="my-3">Past Bookings</h3>
-
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mb-5" id="past-booking">
-
+  <!-- PENDING BOOKINGS -->
+  <div class="tab-pane fade" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
     <% @bookings.each do |b| %>
-        <%= link_to booking_path(b) do %>
-          <div class="card-product mb-3 border me-2">
+      <% if b.user == @user && b.status == "Pending" %>
+
+        <div class="card-product mb-3 border me-2 justify-content-between">
+          <div class="d-flex">
             <%= image_tag b.pokemon.picture, alt: b.pokemon.name, class: "avatar" %>
             <div class="card-product-infos">
               <h2><%= b.pokemon.name %></h2>
-              <p><%= b.start_date.strftime("%B %d, %Y")  %> - <%= b.end_date.strftime("%B %d, %Y")  %></p>
-              <div class="d-flex align-items-center" id="past-booking-location">
-                <%= image_tag "location.png", id:"location-marker" %>
-                <p><%= b.pokemon.location %></p>
+              <div class="d-flex mt-2">
+                <!-- Booking status -->
+                  <div class="d-flex gap-1 padding-x">
+                    <p style="color: orange;"><i class="fa-solid fa-clock"></i></p>
+                    <p><%= b.status %></p>
+                  </div>
+
+                <!-- Booking dates -->
+                <p class="padding-x border-start"><%= b.start_date.strftime("%B %d, %Y")  %> - <%= b.end_date.strftime("%B %d, %Y")  %></p>
+                <!-- Pokemon location -->
+                <p class="padding-x border-start">Location: <%= b.pokemon.location %></p>
               </div>
             </div>
           </div>
-        <% end %>
+
+          <div class="d-grid btn-booking-index">
+            <%= link_to "Details", booking_path(b), class:"btn btn-sm btn-primary mb-0" %>
+            <%= link_to "Cancel", cancel_booking_path(b), method: :patch,
+                      data: {confirm: 'You are about to cancel your booking for this pokemon, are you sure?'},
+                      class: "btn btn-sm btn-outline-warning" %>
+          </div>
+
+        </div>
+      <% end %>
     <% end %>
+
   </div>
-<% end %>
 
-<!-- Confirmed bookings -->
+  <!-- FUTURE BOOKINGS -->
+  <div class="tab-pane fade" id="nav-future" role="tabpanel" aria-labelledby="nav-future-tab">
+    <% @bookings.each do |b| %>
+      <% if b.user == @user && b.status == "Confirmed" && Date.today.between?(b.start_date, b.end_date) == false %>
 
-<% if @bookings.where(user: @user, status: "Confirmed").any? %>
-  <h3>Confirmed bookings</h3>
-  <% @bookings.each do |b| %>
-    <div class="col">
-      <div class="card-product h-100">
-        <%= image_tag b.pokemon.picture, class:"card-img-top", alt:"Photo of #{b.pokemon.name}"%>
-        <div class="card-body">
-          <h5 class="card-title"><%= link_to b.pokemon.name, booking_path(b) %></h5>
-          <p class="card-text">Avaible for pickup on: <%= b.start_date  %></p>
-          <p class="card-text">Must return by: <%= b.end_date  %></p>
+        <div class="card-product mb-3 border me-2 justify-content-between">
+          <div class="d-flex">
+            <%= image_tag b.pokemon.picture, alt: b.pokemon.name, class: "avatar" %>
+            <div class="card-product-infos">
+              <h2><%= b.pokemon.name %></h2>
+              <div class="d-flex mt-2">
+                <!-- Booking status -->
+
+                  <div class="d-flex gap-1 padding-x">
+                    <p style="color: green;"><i class="fa-solid fa-circle-check"></i></p>
+                    <p><%= b.status %></p>
+                  </div>
+
+                <!-- Booking dates -->
+                <p class="padding-x border-start"><%= b.start_date.strftime("%B %d, %Y")  %> - <%= b.end_date.strftime("%B %d, %Y")  %></p>
+                <!-- Pokemon location -->
+                <p class="padding-x border-start">Location: <%= b.pokemon.location %></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-grid btn-booking-index">
+            <%= link_to "Details", booking_path(b), class:"btn btn-sm btn-primary mb-0" %>
+            <%= link_to "Cancel", cancel_booking_path(b), method: :patch,
+                      data: {confirm: 'You are about to cancel your booking for this pokemon, are you sure?'},
+                      class: "btn btn-sm btn-outline-warning" %>
+          </div>
+
         </div>
-      </div>
-    </div>
-  <% end %>
-<% end %>
-
-<!-- Pending bookings-->
-
-<% if @bookings.where(user: @user, status: "Pending").any? %>
-  <h3>Pending bookings</h3>
-  <% @bookings.each do |b| %>
-    <div class="col">
-    <%= link_to booking_path(b) do %>
-      <div class="card-product h-100">
-        <%= image_tag b.pokemon.picture, class:"card-img-top", alt:"Photo of #{b.pokemon.name}"%>
-        <div class="card-body">
-          <h5 class="card-title"><%= link_to b.pokemon.name, booking_path(b) %></h5>
-          <p class="card-text">Avaible for pickup on: <%= b.start_date.strftime("%B %d, %Y")  %></p>
-          <p class="card-text">Must return by: <%= b.end_date.strftime("%B %d, %Y")  %></p>
-          <%= link_to "Confirm this booking", confirm_booking_path(b), method: :patch,
-                  data: {confirm: 'You are about to confirm the booking for this pokemon, are you sure?'} %>
-        </div>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
-<% end %>
 
-<!-- Cancelled bookings -->
+  </div>
 
-<% if @bookings.where(user: @user, status: "Cancelled").any? %>
-  <h3>Cancelled bookings</h3>
-  <% @bookings.each do |b| %>
-    <div class="col">
-      <div class="card-product h-100">
-        <%= image_tag b.pokemon.picture, class:"card-img-top", alt:"Photo of #{b.pokemon.name}" %>
-        <div class="card-body">
-          <h5 class="card-title"><%= link_to b.pokemon.name, booking_path(b) %></h5>
-          <p class="card-text">Avaible for pickup on: <%= b.start_date %></p>
-          <p class="card-text">Must return by: <%= b.end_date %></p>
-          <%= link_to "Re-book this pokémon", rebook_booking_path(b), method: :patch,
-                  data: {confirm: 'You are about to request for the booking of this pokemon, are you sure?'} %>
+  <!-- PAST BOOKINGS -->
+  <div class="tab-pane fade" id="nav-past" role="tabpanel" aria-labelledby="nav-past-tab">
+    <% @bookings.each do |b| %>
+      <% if b.user == @user && b.status == "Completed" %>
+
+        <div class="card-product mb-3 border me-2 justify-content-between">
+          <div class="d-flex">
+            <%= image_tag b.pokemon.picture, alt: b.pokemon.name, class: "avatar" %>
+            <div class="card-product-infos">
+              <h2><%= b.pokemon.name %></h2>
+              <div class="d-flex mt-2">
+                <!-- Booking status -->
+                  <div class="d-flex gap-1 padding-x">
+                    <p style="color: grey;"><i class="fa-solid fa-circle"></i></p>
+                    <p><%= b.status %></p>
+                  </div>
+                <!-- Booking dates -->
+                <p class="padding-x border-start"><%= b.start_date.strftime("%B %d, %Y")  %> - <%= b.end_date.strftime("%B %d, %Y")  %></p>
+                <!-- Pokemon location -->
+                <p class="padding-x border-start">Location: <%= b.pokemon.location %></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-grid btn-booking-index">
+            <%= link_to "Details", booking_path(b), class:"btn btn-sm btn-primary m-0" %>
+          </div>
+
         </div>
-      </div>
-    </div>
-  <% end %>
-<% end %>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>
