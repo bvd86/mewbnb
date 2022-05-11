@@ -18,25 +18,14 @@
       Pick-up location: <%= @booking.pokemon.location %></p>
     </div>
 
-    <div class="border-top mb-3" id="confirmation-pokemon">
-      <p class="mt-2 mb-2"><b>Pokemon</b></p>
-      <div class="d-flex align-items-center gap-3">
-          <%= link_to pokemon_path(@booking.pokemon) do%>
-            <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{@booking.pokemon.pokedex_entry}.png" %>
-              <% if @booking.pokemon.picture.attached? %>
-              <%= image_tag @booking.pokemon.picture, alt: @booking.pokemon.name %>
-              <% else %>
-              <%= image_tag picture, alt: @booking.pokemon.name %>
-              <% end %>
-          <% end %>
-
   <div class="border-top mb-3" id="confirmation-pokemon">
     <p class="mt-2 mb-2"><b>Pokemon</b></p>
     <div class="d-flex align-items-center gap-3">
         <%= link_to pokemon_path(@booking.pokemon) do%>
           <%= cl_image_tag @booking.pokemon.picture.key, height: 500, width: 500, crop: :fill %>
         <% end %>
-          <%= link_to @booking.pokemon.name, pokemon_path(@booking.pokemon) %>
+
+        <%= link_to @booking.pokemon.name, pokemon_path(@booking.pokemon) %>
 
         <div>
           <p>Level: <%= @booking.pokemon.level %></p>

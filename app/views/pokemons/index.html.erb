@@ -22,8 +22,7 @@
 
         <div class="card" data-text="<%= p.name %>" style="--bubble-color: rgb(<%= rand(255) %>, <%= rand(255) %>, <%= rand(255) %>); --text-color: rgb(<%= rand(255) %>, <%= rand(255) %>, <%= rand(255) %>) ">
           <div class="imgBox">
-            <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{p.pokedex_entry}.png" %>
-            <%= image_tag picture, class:"ivysaur" %>
+            <%= image_tag p.picture, class:"ivysaur" %>
           </div>
           <div class="contentBox">
             <h2><%= link_to p.name, pokemon_path(p) %></h2>
@@ -48,8 +47,7 @@
 
           <div class="card" data-text="<%= p.name %>" style="--bubble-color: rgb(<%= rand(255) %>, <%= rand(255) %>, <%= rand(255) %>); --text-color: rgb(<%= rand(255) %>, <%= rand(255) %>, <%= rand(255) %>) ">
             <div class="imgBox">
-              <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{p.pokedex_entry}.png" %>
-              <%= image_tag picture, class:"ivysaur" %>
+              <%= image_tag p.picture, class:"ivysaur" %>
             </div>
             <div class="contentBox">
               <h2><%= link_to p.name, pokemon_path(p) %></h2>
