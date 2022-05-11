@@ -16,7 +16,7 @@
         <!-- POKEMON PICTURE AND RATE -->
         <div class="pokemon-details-left">
           <div class="pokemon-img">
-             <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{@pokemon.pokedex_entry}.png" %>
+            <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{@pokemon.pokedex_entry}.png" %>
             <% if @pokemon.picture.attached? %>
             <%= image_tag @pokemon.picture, alt: @pokemon.name %>
             <% else %>

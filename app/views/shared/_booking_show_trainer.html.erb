@@ -30,12 +30,6 @@
               <% end %>
           <% end %>
 
-  <div class="border-top mb-3" id="confirmation-pokemon">
-    <p class="mt-2 mb-2"><b>Pokemon</b></p>
-    <div class="d-flex align-items-center gap-3">
-        <%= link_to pokemon_path(@booking.pokemon) do%>
-          <%= cl_image_tag @booking.pokemon.picture.key, height: 500, width: 500, crop: :fill %>
-        <% end %>
           <%= link_to @booking.pokemon.name, pokemon_path(@booking.pokemon) %>
 
         <div>
