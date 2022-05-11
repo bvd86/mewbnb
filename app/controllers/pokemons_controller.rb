@@ -40,7 +40,7 @@ class PokemonsController < ApplicationController
     poke_type = poke_info[:types][0][:type][:name]
     @pokemon.pokemon_type = poke_type.capitalize
 
-    attach_pic
+    attach_pic if @pokemon.picture.attached? == false
 
     if @pokemon.save!
       redirect_to pokemon_path(@pokemon)
