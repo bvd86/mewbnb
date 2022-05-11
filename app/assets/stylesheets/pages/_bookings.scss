@@ -73,3 +73,19 @@ td:first-child::after {
     color: black;
   }
 }
+
+.booking-show-container {
+  border: 2px solid #332D67;
+  box-shadow: 7px 5px 21px -2px rgba(194,150,179,0.7);
+  border-radius: 25px;
+  margin: 10px auto;
+  padding: 20px
+}
+
+.booking-show-container h2 {
+  text-align: center;
+}
+
+.container-confirmation {
+  margin: 0 auto;
+}
