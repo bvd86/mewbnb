@@ -1,64 +1,71 @@
-<% if @booking.status == "Confirmed" %>
-  <h2 class="mt-3 mb-3">Your booking has been confirmed!</h2>
-<% elsif @booking.status == "Pending" %>
-  <h2 class="mt-3 mb-3">Your booking is pending Gym Leader's approval...</h2>
-<% elsif @booking.status == "Cancelled" %>
-  <h2 class="mt-3 mb-3">Your booking is has been cancelled.</h2>
-<% elsif @booking.status == "Completed" %>
-  <h2 class="mt-3 mb-3">Past booking</h2>
-<% end %>
+<div class="booking-show-container">
+  <% if @booking.status == "Confirmed" %>
+    <h2 class="mt-3 mb-3">Your booking has been confirmed!</h2>
+  <% elsif @booking.status == "Pending" %>
+    <h2 class="mt-3 mb-3">Your booking is pending Gym Leader's approval...</h2>
+  <% elsif @booking.status == "Cancelled" %>
+    <h2 class="mt-3 mb-3">Your booking is has been cancelled.</h2>
+  <% elsif @booking.status == "Completed" %>
+    <h2 class="mt-3 mb-3">Past booking</h2>
+  <% end %>
+<hr>
+  <div class="container-confirmation mb-5">
 
-<div class="container-confirmation mb-5">
+    <div>
+      <p class="mt-2"><b>Booking Details</b></p>
+      <p>Gym Leader: <%= @booking.pokemon.user.email.split("@").first.capitalize %></p>
+      <p>Booked from <b><%= @booking.start_date.strftime("%B %d, %Y") %></b> to <b><%= @booking.end_date.strftime("%B %d, %Y") %></b></p>
+      Pick-up location: <%= @booking.pokemon.location %></p>
+    </div>
 
-  <div>
-    <p class="mt-2"><b>Booking Details</b></p>
-    <p>Gym Leader: <%= @booking.pokemon.user.email.split("@").first.capitalize %></p>
-    <p>Booked from <b><%= @booking.start_date.strftime("%B %d, %Y") %></b> to <b><%= @booking.end_date.strftime("%B %d, %Y") %></b></p>
-    Pick-up location: <%= @booking.pokemon.location %></p>
-  </div>
+    <div class="border-top mb-3" id="confirmation-pokemon">
+      <p class="mt-2 mb-2"><b>Pokemon</b></p>
+      <div class="d-flex align-items-center gap-3">
+          <%= link_to pokemon_path(@booking.pokemon) do%>
+            <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{@booking.pokemon.pokedex_entry}.png" %>
+              <% if @booking.pokemon.picture.attached? %>
+              <%= image_tag @booking.pokemon.picture, alt: @booking.pokemon.name %>
+              <% else %>
+              <%= image_tag picture, alt: @booking.pokemon.name %>
+              <% end %>
+          <% end %>
 
-  <div class="border-top mb-3" id="confirmation-pokemon">
-    <p class="mt-2 mb-2"><b>Pokemon</b></p>
-    <div class="d-flex align-items-center gap-3">
-        <%= link_to pokemon_path(@booking.pokemon) do%>
-          <%= image_tag @booking.pokemon.picture, atl:@booking.pokemon.name, class:"avatar avatar-large" %>
-        <% end %>
+          <%= link_to @booking.pokemon.name, pokemon_path(@booking.pokemon) %>
 
-        <%= link_to @booking.pokemon.name, pokemon_path(@booking.pokemon) %>
-
-      <div>
-        <p>Level: <%= @booking.pokemon.level %></p>
-      </div>
-      <div>
-        <p>Type: <%= @booking.pokemon.pokemon_type %></p>
+        <div>
+          <p>Level: <%= @booking.pokemon.level %></p>
+        </div>
+        <div>
+          <p>Type: <%= @booking.pokemon.pokemon_type %></p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="border-top mb-4">
-    <p class="mt-2"><b>Charges</b></p>
+    <div class="border-top mb-4">
+      <p class="mt-2"><b>Charges</b></p>
 
-    <table>
-      <tr>
-        <td>Rate</td>
-        <td>$<%= @booking.pokemon.rate %>/day</td>
-      </tr>
-      <tr>
-        <% if (@booking.end_date - @booking.start_date).to_i == 0 %>
-          <td>Total</td>
-          <td> $<%= @booking.pokemon.rate %></td>
-        <% else %>
-          <td>Total</td>
-          <td> $<%= (@booking.end_date - @booking.start_date).to_i*@booking.pokemon.rate  %></td>
-        <% end %>
-      </tr>
-    </table>
-  </div>
-  <div class="d-grid gap-2">
-    <% if @booking.status == "Pending" || @booking.status == "Confirmed" && Date.today.between?(@booking.start_date, @booking.end_date) == false %>
-      <%= link_to "Cancel this booking", cancel_booking_path(@booking), method: :patch,
-            data: {confirm: 'You are about to cancel you booking for this pokemon, are you sure?'},
-            class:"btn btn-outline-warning" %>
-    <% end %>
+      <table>
+        <tr>
+          <td>Rate</td>
+          <td>$<%= @booking.pokemon.rate %>/day</td>
+        </tr>
+        <tr>
+          <% if (@booking.end_date - @booking.start_date).to_i == 0 %>
+            <td>Total</td>
+            <td> $<%= @booking.pokemon.rate %></td>
+          <% else %>
+            <td>Total</td>
+            <td> $<%= (@booking.end_date - @booking.start_date).to_i*@booking.pokemon.rate  %></td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+    <div class="d-grid gap-2">
+      <% if @booking.status == "Pending" || @booking.status == "Confirmed" && Date.today.between?(@booking.start_date, @booking.end_date) == false %>
+        <%= link_to "Cancel this booking", cancel_booking_path(@booking), method: :patch,
+              data: {confirm: 'You are about to cancel you booking for this pokemon, are you sure?'},
+              class:"btn btn-outline-warning" %>
+      <% end %>
+    </div>
   </div>
 </div>
