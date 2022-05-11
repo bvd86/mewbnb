@@ -152,7 +152,7 @@
 
 <div class="poke-booking-form">
   <%= simple_form_for @pokemon do |f| %>
-        <%= f.input :name, collection: names.sort %>
+        <%= f.input :name, collection: names.sort, input_html: { data: { controller: 'select2' }} %>
         <%= f.input :location %>
         <%= f.input :level, collection: 1..100 %>
         <%= f.input :rate, as: :numeric %>
