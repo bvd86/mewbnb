@@ -21,7 +21,8 @@ class PokemonsController < ApplicationController
       {
         lat: pokemon.latitude,
         lng: pokemon.longitude,
-        info_window: render_to_string(partial: "shared/info_window", locals: { pokemon: pokemon })
+        info_window: render_to_string(partial: "shared/info_window", locals: { pokemon: pokemon }),
+        image_url: helpers.asset_url("location.png")
       }
     end
   end
@@ -55,13 +56,12 @@ class PokemonsController < ApplicationController
     @booking = Booking.new
 
     # Map attributes
-    @markers = @pokemons.geocoded.map do |pokemon|
-      {
-        lat: pokemon.latitude,
-        lng: pokemon.longitude,
-        info_window: render_to_string(partial: "shared/info_window", locals: { pokemon: pokemon })
-      }
-    end
+    @markers = [{
+      lat: @pokemon.latitude,
+      lng: @pokemon.longitude,
+      info_window: render_to_string(partial: "shared/info_window", locals: { pokemon: @pokemon }),
+      image_url: helpers.asset_url("location.png")
+    }]
   end
 
   def update
