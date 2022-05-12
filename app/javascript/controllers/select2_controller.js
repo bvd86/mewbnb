@@ -1,10 +1,17 @@
 import { Controller } from "@hotwired/stimulus";
 import $ from "jquery";
 import "select2";
-// import 'select2/dist/css/select2.min.css'; <- Uncomment this line if you are using Rails
 
 export default class extends Controller {
   connect() {
-     $(this.element).select2();
+    $(this.element).select2({
+      width: "100%",
+      placeholder: "Select a pokemon"
+    });
+
+    // Fixing auto focus on the select2 field
+    $(document).on('select2:open', () => {
+      document.querySelector('.select2-search__field').focus();
+    });
   }
 }
