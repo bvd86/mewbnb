@@ -20,7 +20,7 @@
 
           <div class="card-product mb-3 border me-2 justify-content-between">
             <div class="d-flex">
-              <%= image_tag b.pokemon.picture, alt: b.pokemon.name, class: "avatar" %>
+              <%= cl_image_tag b.pokemon.picture.key, alt: b.pokemon.name, class: "avatar" %>
               <div class="card-product-infos">
                 <h2><%= b.pokemon.name %></h2>
                 <div class="d-flex mt-2">
@@ -54,7 +54,7 @@
 
         <div class="card-product mb-3 border me-2 justify-content-between">
           <div class="d-flex">
-            <%= image_tag b.pokemon.picture, alt: b.pokemon.name, class: "avatar" %>
+            <%= cl_image_tag b.pokemon.picture.key, alt: b.pokemon.name, class: "avatar" %>
             <div class="card-product-infos">
               <h2><%= b.pokemon.name %></h2>
               <div class="d-flex mt-2">
@@ -92,7 +92,7 @@
 
         <div class="card-product mb-3 border me-2 justify-content-between">
           <div class="d-flex">
-            <%= image_tag b.pokemon.picture, alt: b.pokemon.name, class: "avatar" %>
+            <%= cl_image_tag b.pokemon.picture.key, alt: b.pokemon.name, class: "avatar" %>
             <div class="card-product-infos">
               <h2><%= b.pokemon.name %></h2>
               <div class="d-flex mt-2">
@@ -131,7 +131,7 @@
 
         <div class="card-product mb-3 border me-2 justify-content-between">
           <div class="d-flex">
-            <%= image_tag b.pokemon.picture, alt: b.pokemon.name, class: "avatar" %>
+            <%= cl_image_tag b.pokemon.picture.key, alt: b.pokemon.name, class: "avatar" %>
             <div class="card-product-infos">
               <h2><%= b.pokemon.name %></h2>
               <div class="d-flex mt-2">
