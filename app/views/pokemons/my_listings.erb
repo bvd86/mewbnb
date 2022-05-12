@@ -9,7 +9,7 @@
   <% @pokemons.each do |p| %>
 
     <div class="card-product mb-3">
-      <%= cl_image_tag p.picture.key, class: "avatar" %>
+      <%= image_tag p.picture, class: "avatar" %>
       <div class="card-product-infos">
         <h2>
           <%= link_to p.name, pokemon_path(p) %>

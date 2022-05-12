@@ -21,7 +21,12 @@
     <p class="mt-2 mb-2"><b>Pokemon</b></p>
     <div class="d-flex align-items-center gap-3">
         <%= link_to pokemon_path(@booking.pokemon) do%>
-          <%= cl_image_tag @booking.pokemon.picture.key, height: 500, width: 500, crop: :fill %>
+        <% picture = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{@booking.pokemon.pokedex_entry}.png" %>
+            <% if @booking.pokemon.picture.attached? %>
+            <%= image_tag @booking.pokemon.picture, alt: @booking.pokemon.name %>
+            <% else %>
+            <%= image_tag picture, alt: @booking.pokemon.name %>
+            <% end %>
         <% end %>
 
         <%= link_to @booking.pokemon.name, pokemon_path(@booking.pokemon) %>
@@ -62,7 +67,7 @@
     <% end %>
     <% if @booking.status == "Pending" || @booking.status == "Confirmed" && Date.today.between?(@booking.start_date, @booking.end_date) == false %>
       <%= link_to "Cancel this booking", cancel_booking_path(@booking), method: :patch,
-            data: {confirm: 'You are about to cancel your booking for this pokemon, are you sure?'},
+            data: {confirm: 'You are about to cancel you booking for this pokemon, are you sure?'},
             class:"btn btn-outline-warning" %>
     <% end %>
   </div>
