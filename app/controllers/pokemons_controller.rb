@@ -36,14 +36,16 @@ class PokemonsController < ApplicationController
     @pokemon.user = @user
 
     # Fetching the pokemon type
-    response = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{@pokemon.name.downcase}/"
-    poke_info = JSON.parse(response, symbolize_names: true)
-    poke_type = poke_info[:types][0][:type][:name]
-    @pokemon.pokemon_type = poke_type.capitalize
+    if @pokemon.name.present?
+      response = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{@pokemon.name.downcase}/"
+      poke_info = JSON.parse(response, symbolize_names: true)
+      poke_type = poke_info[:types][0][:type][:name]
+      @pokemon.pokemon_type = poke_type.capitalize
 
-    attach_pic if @pokemon.picture.attached? == false
+      attach_pic if @pokemon.picture.attached? == false
+    end
 
-    if @pokemon.save!
+    if @pokemon.save
       redirect_to pokemon_path(@pokemon)
     else
       render :new

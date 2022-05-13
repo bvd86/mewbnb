@@ -37,6 +37,9 @@ gem 'faker'
 # Geocoding gem
 gem "geocoder"
 
+# JSON files gem
+gem 'json'
+
 # Front-end gems
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
